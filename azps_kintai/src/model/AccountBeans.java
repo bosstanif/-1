@@ -11,7 +11,14 @@ public class AccountBeans implements Serializable {
 	private String pass;
 	private int status;
 	private String comment;
-
+	
+	private int dayNum;
+	private int dayTime;
+	private int inTime;
+	private int outTime;
+	private int breakIn;
+	private int breakOut;
+	
 	@Override//確認作業用
 	public String toString() {
 		return "AccountBeans [account_Num=" + account_Num + ", muster_Flag=" + muster_Flag + ", emp_Id=" + emp_Id
@@ -34,8 +41,18 @@ public class AccountBeans implements Serializable {
 		this.status = status;
 		this.comment = comment;
 	}
+    //CountDayDAOやり取り用
+	public AccountBeans( int dayNum, int dayTime, int inTime, int outTime, int breakIn, int breakOut) {
+	
+		
+		this.dayNum = dayNum;
+		this.dayTime = dayTime;
+		this.inTime = inTime;
+		this.outTime = outTime;
+		this.breakIn = breakIn;
+		this.breakOut = breakOut;
+	}
 
-	//getter
 	public int getAccount_Num() {
 		return account_Num;
 	}
@@ -48,7 +65,6 @@ public class AccountBeans implements Serializable {
 		return muster_Flag;
 	}
 
-	//setter
 	public void setMuster_Flag(int muster_Flag) {
 		this.muster_Flag = muster_Flag;
 	}
@@ -91,6 +107,55 @@ public class AccountBeans implements Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	
+	public int getDayNum() {
+		return dayNum;
+	}
+
+	public void setDayNum(int dayNum) {
+		this.dayNum = dayNum;
+	}
+
+	public int getDayTime() {
+		return dayTime;
+	}
+
+	public void setDayTime(int dayTime) {
+		this.dayTime = dayTime;
+	}
+
+	public int getInTime() {
+		return inTime;
+	}
+
+	public void setInTime(int inTime) {
+		this.inTime = inTime;
+	}
+
+	public int getOutTime() {
+		return outTime;
+	}
+
+	public void setOutTime(int outTime) {
+		this.outTime = outTime;
+	}
+
+	public int getBreakIn() {
+		return breakIn;
+	}
+
+	public void setBreakIn(int breakIn) {
+		this.breakIn = breakIn;
+	}
+
+	public int getBreakOut() {
+		return breakOut;
+	}
+
+	public void setBreakOut(int breakOut) {
+		this.breakOut = breakOut;
 	}
 
 }

@@ -15,7 +15,7 @@ public class AccountDAO {
 	private final String DB_USER = "root";
 	private final String DB_PASS = "root";
 
-	public AccountBeans Select_All(Login login) {
+	public AccountBeans Select_All(Login login) {//本人確認
 		
 		AccountBeans accountBeans = null;
 
