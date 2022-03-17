@@ -73,11 +73,7 @@ color:#FFAA00;
 
 /*ロゴ画像のサイズと余白の調整*/
 
-.footer_img_logo{
-	width:170px;/*ロゴの横幅*/
-	margin-top:10px;/*上部余白の指定*/
-	margin-left:20px;/*上部余白の指定*/
-}
+
 
 .footer_span_item1{/*spanタグ有効範囲内のli要素が1つのときの右揃えテキスト余白を調整*/
 	margin-right: 20px;
