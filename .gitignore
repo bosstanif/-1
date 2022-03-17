@@ -1,14 +1,5 @@
 ### https://raw.github.com/github/gitignore/7293c14345c205c679722364a01b88d331e862ff/Java.gitignore
 
-# Eclipse
-.project
-.classpath
-.settings
-
-# OS
-Thumbs.db
-.DS_Store
-
 # Compiled class file
 *.class
 
