@@ -3,8 +3,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
 <!-- 変数の機能定義などに必要なモデルの読み込み。ここが抜けてると変数関連エラーになる-->
+<%@ page import="model*"%>
 <%@ page import="model.AccountBeans"%>
 <%--<%@ page import="model.AccountBeans,model.Restaurant,java.util.List"%>--%>
+
 
 <!-- セッションスコープからユーザー情報を取得 -->
 <%--
