@@ -170,3 +170,5 @@ Servers/localhost の Tomcat v9.0 サーバー-config/context.xml
 Servers/localhost の Tomcat v9.0 サーバー-config/server.xml
 Servers/localhost の Tomcat v9.0 サーバー-config/tomcat-users.xml
 Servers/localhost の Tomcat v9.0 サーバー-config/web.xml
+azps_kintai/src/main/webapp/META-INF/MANIFEST.MF
+azps_kintai/src/main/webapp/WEB-INF/web.xml
