@@ -163,3 +163,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+azps_kintai/server.xml
+Servers/localhost の Tomcat v9.0 サーバー-config/catalina.policy
+Servers/localhost の Tomcat v9.0 サーバー-config/catalina.properties
+Servers/localhost の Tomcat v9.0 サーバー-config/context.xml
+Servers/localhost の Tomcat v9.0 サーバー-config/server.xml
+Servers/localhost の Tomcat v9.0 サーバー-config/tomcat-users.xml
+Servers/localhost の Tomcat v9.0 サーバー-config/web.xml
