@@ -56,4 +56,133 @@ public class AccountDAO {
 		}
 
 	}
+	public void Update_Status0(AccountBeans accountBeans) {
+
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "UPDATE ACCOUNT SET STATUS = 0 WHERE EMP_ID = ? AND PASS = ?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(2, accountBeans.getPass());//パスワード
+
+			// SELECT文を実行し、結果表を取得
+	pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void Update_Status1(AccountBeans accountBeans) {
+
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "UPDATE ACCOUNT SET STATUS = 1 WHERE EMP_ID = ? AND PASS = ?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(2, accountBeans.getPass());//パスワード
+
+			// SELECT文を実行し、結果表を取得
+	pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void Update_Status2(AccountBeans accountBeans) {
+
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "UPDATE ACCOUNT SET STATUS = 2 WHERE EMP_ID = ? AND PASS = ?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(2, accountBeans.getPass());//パスワード
+
+			// SELECT文を実行し、結果表を取得
+	pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void Update_Status3(AccountBeans accountBeans) {
+
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "UPDATE ACCOUNT SET STATUS = 3 WHERE EMP_ID = ? AND PASS = ?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(2, accountBeans.getPass());//パスワード
+
+			// SELECT文を実行し、結果表を取得
+	pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void Update_Status_comment(AccountBeans accountBeans) {//コメント更新
+
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "UPDATE ACCOUNT SET COMMENT = ? WHERE EMP_ID = ? AND PASS = ?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(2, accountBeans.getPass());//パスワード
+			pStmt.setString(3, accountBeans.getComment());//コメント
+
+			// SELECT文を実行し、結果表を取得
+	pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void Insert(AccountBeans accountBeans) {
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// INSERT文を準備
+			String sql = "INSERT INTO ACCOUNT VALUES (MASTER_FLAG = ?,EMP_ID = ?,NAME = ?,PASS = ?,STATUS =?)";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setInt(1, accountBeans.getMuster_Flag());//管理権限デフォルトあり
+			pStmt.setString(2, accountBeans.getEmp_Id());//社員番号
+			pStmt.setString(3, accountBeans.getName());//名前
+			pStmt.setString(4, accountBeans.getPass());//パスワード
+			pStmt.setInt(5, accountBeans.getStatus());//勤務状況デフォルトあり
+
+			// INSERT文を実行し、結果表を取得
+			pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+	}
 }
