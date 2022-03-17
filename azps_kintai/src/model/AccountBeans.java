@@ -22,7 +22,7 @@ public class AccountBeans implements Serializable {
 
 	}
 
-    //DAOやり取り用
+    //AccountDAOやり取り用
 	public AccountBeans(int account_Num, int muster_Flag, String emp_Id, String name, String pass, int status,
 			String comment) {
 
