@@ -16,9 +16,10 @@ public class AccountDAO {
 	private final String DB_PASS = "root";
 
 	public AccountBeans Select_All(Login login) {
-
+		
 		AccountBeans accountBeans = null;
 
+		
 		// データベースへ接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
