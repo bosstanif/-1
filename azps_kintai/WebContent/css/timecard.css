@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/*　日時表示　*/
+div.date-time {
+ height:80px;
+ margin-top:30px;
+ padding:10px;
+ background:#0080c0;
+ border-bottom:1px solid #fff;
+ color:#fff;
+ }
+.year {width:150px; text-align:center; vertical-align:bottom; }
+.date {width:150px; text-align:center;}
+.time {font-size:200%;}
+
+/*　ボタン　*/
+div.buttons {
+ /*color:#fff;*/
+ height:75px;/*ボタン部分全体の高さ*/
+ padding-top:30px;/*ボタン部分の上部余白*/
+ background:#ffffff;/*ボタン部分の背景色*/
+ }
+
+.buttons li {
+  display:inline-block;
+/*  float:left; */
+ width:120px;
+ text-align:center;
+/*   margin-left: auto;
+  margin-right: auto; */
+ }
+.buttons li span{/*まだ押せないボタンの色*/
+ display:block;
+ background:#0080ff;
+ margin:auto;
+ font-size:150%;
+ color:#ffffff;
+ opacity:0.3;
+ width:100px;
+ height:50px;
+ line-height:50px;
+ border:1px solid #80ffff;
+ border-radius:7px;
+ box-shadow:1px 1px 4px 0 #00ffff, 0px 1px 1px 0 #00ffff inset;
+ }
+.buttons li input{/*押せるボタンの色*/
+ display:block;
+ background:#0080ff;/*メインカラー*/
+ margin:auto;
+ font-size:150%;
+ color:#ffffff;
+ opacity:1.0;
+ width:100px;
+ height:50px;
+ line-height:50px;
+ border:1px solid #80ffff;/*縁取りの色*/
+ border-radius:7px;
+ box-shadow:1px 1px 4px 0 #00ffff, 0px 1px 1px 0 #00ffff inset;/*影の色　外側と内側*/
+ }
