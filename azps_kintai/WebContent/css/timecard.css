@@ -2,16 +2,31 @@
 
 /*　日時表示　*/
 div.date-time {
- height:80px;
- margin-top:30px;
+width:1100px;/*横幅の指定*/
+margin-left:auto;/*window幅に追随して左側の余白を自動で指定*/
+margin-right:auto;/*window幅に追随して右側の余白を自動で指定*/
+
+ height:auto;/*要素全体の高さの指定。ここでは日時表示欄の高さ*/
+ margin-top:00px;/*上の要素からの距離（余白の指定）*/
  padding:10px;
  background:#0080c0;
  border-bottom:1px solid #fff;
  color:#fff;
  }
-.year {width:150px; text-align:center; vertical-align:bottom; }
+.year {width:150px; text-align:center; vertical-align:bottom;}
 .date {width:150px; text-align:center;}
 .time {font-size:200%;}
+
+
+/*自作　時間表示の文字を少し大きくする処理*/
+.nowtime{
+ font-size: 400%;
+}
+
+
+
+
+
 
 /*　ボタン　*/
 div.buttons {
@@ -40,7 +55,7 @@ div.buttons {
  height:50px;
  line-height:50px;
  border:1px solid #80ffff;
- border-radius:7px;
+ border-radius:200px;/*ボタンの角丸度を指定。結構丸い*/
  box-shadow:1px 1px 4px 0 #00ffff, 0px 1px 1px 0 #00ffff inset;
  }
 .buttons li input{/*押せるボタンの色*/

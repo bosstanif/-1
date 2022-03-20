@@ -1,4 +1,4 @@
-<!-- 最終更新日時0316 -->
+<!-- 最終更新日時0320 -->
 <!-- 作成者井川-->
 
 <!--jspテンプレ-->
@@ -30,6 +30,9 @@
 <!-- timcard.cssの読み込み -->
 <link rel="stylesheet" href="css/timecard.css">
 
+<!-- 時刻表示用jsを読み込み -->
+<!-- <link rel="stylesheet" href="css/timecard.css"> -->
+
 
 </head>
 
@@ -48,23 +51,14 @@
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
 
+<!-- 青背景で囲む -->
 <div class="date-time">
 
 
- <table>
- <tbody>
- <tr>
- <td class="year" id="year">2016</td>
- <td rowspan="2" class="time" id="time">
- 14:37:34
- </td>
- </tr>
- <tr>
+<p class="" id="RealtimeDate1">Now Loading...</p>
 
- <td class="date" id="date">12/07 WED</td>
- </tr>
- </tbody>
- </table>
+<p class="nowtime" id="RealtimeClockArea3">Now Loading...</p>
+
 </div>
 
 <div class="buttons">
@@ -88,6 +82,11 @@
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 <%--<%@ include file="/WEB-INF/jsp/footer.jsp" %> --%>
 
+
+<!-- スクリプト読み込み -->
+
+<!-- 時刻表示用jsを読み込み -->
+ <script type="text/javascript" src="js/currentDateTime.js"></script>
 
 
 </body>
