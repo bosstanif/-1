@@ -19,6 +19,10 @@ margin-right:auto;/*window幅に追随して右側の余白を自動で指定*/
 
 
 /*自作　時間表示の文字を少し大きくする処理*/
+
+.nowdate{
+ font-size: 150%;
+}
 .nowtime{
  font-size: 400%;
 }
@@ -29,11 +33,16 @@ margin-right:auto;/*window幅に追随して右側の余白を自動で指定*/
 
 
 /*　ボタン　*/
+/*ボタン類の背景部分*/
 div.buttons {
  /*color:#fff;*/
  height:75px;/*ボタン部分全体の高さ*/
+ width:1100px;/*幅*/
+ margin-left:auto;/*window幅に追随して左側の余白を自動で指定*/
+ margin-right:auto;/*window幅に追随して右側の余白を自動で指定*/
  padding-top:30px;/*ボタン部分の上部余白*/
- background:#ffffff;/*ボタン部分の背景色*/
+ padding-bottom:65px;  /*ボタン部分の下部余白*/
+ background:#d9f3ff;/*ボタン部分の背景色*/
  }
 
 .buttons li {
@@ -56,11 +65,12 @@ div.buttons {
  line-height:50px;
  border:1px solid #80ffff;
  border-radius:200px;/*ボタンの角丸度を指定。結構丸い*/
- box-shadow:1px 1px 4px 0 #00ffff, 0px 1px 1px 0 #00ffff inset;
+ box-shadow:1px 1px 4px 0 #0fffff, 0px 1px 1px 0 #00ffff inset;
  }
-.buttons li input{/*押せるボタンの色*/
+
+ .buttons li button{/* 押せるボタンの色 */
  display:block;
- background:#0080ff;/*メインカラー*/
+ background:#0080ff;/* メインカラー */
  margin:auto;
  font-size:150%;
  color:#ffffff;
@@ -68,7 +78,134 @@ div.buttons {
  width:100px;
  height:50px;
  line-height:50px;
- border:1px solid #80ffff;/*縁取りの色*/
- border-radius:7px;
- box-shadow:1px 1px 4px 0 #00ffff, 0px 1px 1px 0 #00ffff inset;/*影の色　外側と内側*/
+ border:1px solid #80ffff;/* 縁取りの色 */
+ border-radius:200px;
+ box-shadow:1px 1px 4px 0 #00ffff, 0px 1px 1px 0 #00ffff inset;/* 影の色　外側と内側 */
  }
+
+/*マウスカーソルをあてた時の色変え。まだ機能してない*/
+ .buttons li button :hover {
+  background: lightcoral;
+  cursor: pointer;
+}
+
+ /*出勤押下などモーダルウィンドウ表示に関するCSS*/
+
+/*body部の表記は今回は既成のものは使わないのでオミット*/
+/* body {
+  font-family: serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #fff;
+} */
+
+
+/*ボタン表示部今回は既存のもの使わないのでオミット*/
+/*  .button {
+  background: lightblue;
+  color: #fff;
+  padding: 0 2em;
+  border: 0;
+  width: 200px;
+  height: 100px;
+  font-size: 200%;文字サイズ
+  border-radius: 5px;ボタンの角丸具合
+  font-weight: 900;
+  position: relative;固定位置
+  left: 0px;
+  top: 0px;
+  font-family: serif;
+} */
+
+/*ボタンにマウスカーソル合わせたときの処理。色が変わる。今回は使わないのでオミット*/
+/* .button:hover {
+  background: lightcoral;
+  cursor: pointer;
+} */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content { /*ボタン押下時背景を半透明にする処理*/
+  background-color: #f4f4f4;
+  margin: 20% auto;
+  width: 50%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+@keyframes modalopen {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modal-header h1 {
+  margin: 1rem 0;
+}
+
+.modal-header {
+  background: lightblue;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalClose {/*作成中。バツボタンのところの見栄えの処理*/
+  font-size: 2rem;
+ height:75px;/*ボタン部分全体の高さ*/
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  color: black;
+}
+
+
+/*modal複数用*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.content{
+    margin: 0 auto;
+    padding: 40px;
+}
+.modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.modal__bg{
+    background: rgba(0,0,0,0.5);/*色と透明度の指定*/
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+.modal__content{
+    background: #f4f4f4;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+}
