@@ -52,7 +52,7 @@
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 <%--<%@ include file="/WEB-INF/jsp/footer.jsp" %> --%>
 
-
+<!-- スクリプト読み込み -->
 
 </body>
 
