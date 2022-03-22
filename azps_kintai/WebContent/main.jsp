@@ -107,6 +107,7 @@
 <!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
 			<input id="attendanceIntimeValueInput" type="hidden" name="intimeValue" value="">
 
+
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
     </div><!--modal-->
@@ -141,7 +142,7 @@
 <!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
 				<p id="attendanceBreakinValueInputtest">test Loading...</p>
 <!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceBreakinValueInput" type="hidden" name="outtimeValue" value="">
+			<input id="attendanceBreakinValueInput" type="hidden" name="breakinValue" value="">
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
@@ -159,7 +160,7 @@
 <!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
 				<p id="attendanceBreakoutValueInputtest">test Loading...</p>
 <!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceBreakoutValueInput" type="hidden" name="outtimeValue" value="">
+			<input id="attendanceBreakoutValueInput" type="hidden" name="breakoutValue" value="">
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->+
