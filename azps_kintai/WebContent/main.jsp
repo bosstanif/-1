@@ -92,6 +92,7 @@
 
 
 <!-- ここから下でモーダル内の表示を実装 -->
+ <form action="MainServlet" method="post">
     <div id="modal01" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
@@ -161,9 +162,9 @@
 			<input id="attendanceBreakoutValueInput" type="hidden" name="outtimeValue" value="">
 
             <button class="js-modal-close" >閉じる</button>
-        </div><!--modal__inner-->
+        </div><!--modal__inner-->+
     </div><!--modal-->
-
+</form>
 
 <!-- <div onload="pushed_Attendance()" class="buttons">
 <ul> -->
