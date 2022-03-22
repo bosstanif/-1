@@ -9,6 +9,16 @@ $(function(){
             return false;
         });
     });
+
+    $('.js-modal-submit-open').each(function(){
+        $(this).on('submit',function(){
+            var target = $(this).data('target');
+            var modal = document.getElementById(target);
+            $(modal).fadeIn(200);/*0.2秒かけてフェードイン */
+            return false;
+        });
+    });
+
     $('.js-modal-close').on('click',function(){
         $('.js-modal').fadeOut(50);/*0.05秒でフェードアウト */
         return false;

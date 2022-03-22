@@ -44,13 +44,12 @@
 
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-<h1>例)名無しさんの勤怠記録表（日毎集計）</h1>
+<h1>例)名無しさんの勤怠記録表：日毎集計</h1>
 
 
 <!-- ここからレスポンシブテーブル処理 -->
 
-
-<table class="dataTable">
+<table onload="pushed_Attendance()" class="dataTable">
     <thead>
         <tr>
             <th>日付</th>
@@ -77,7 +76,7 @@
             <td>例)8h</td>
             <td>例)0h</td>
             <td>
-                <button class="action register_button">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
             </td>
 
 <!--             <td>
@@ -95,7 +94,7 @@
             <td>例)8h</td>
             <td>例)0h</td>
             <td>
-                <button class="action register_button">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action">例)修正依頼承認</button>
@@ -112,7 +111,7 @@
             <td>例)8h</td>
             <td>例)0h</td>
             <td>
-                <button class="action register_button">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action"></button>
@@ -129,7 +128,7 @@
             <td>例)8h</td>
             <td>例)1h</td>
             <td>
-                <button class="action register_button">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action">例)ここには管理者から</button>
@@ -146,7 +145,7 @@
             <td>例)7h</td>
             <td>例)0h</td>
             <td>
-                <button class="action register_button">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action">修正依頼の返信が入ります</button>
@@ -191,36 +190,119 @@
     </div>
 
 
-<!-- ここから下でモーダル内の表示を実装 -->
- <form action="MainServlet" method="post">
-    <div id="modal01" class="modal js-modal">
+<!-- ここから下で非表示にしてあるモーダル内の表示を実装 -->
+
+    <div id="modal05" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
-<!--             <p>1つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
+<!-- <p>main内と通算して5つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
+<!-- 5つ目のモーダル内には打刻修正の画面が入ります -->
 
-		        <h1 >打刻修正</h1>
-				<p>おはようございます。今日も一日頑張りましょう！</p>
-		<input class="form-text" id="until-today" type="date" name="birthday"
-				placeholder="1949年6月8日" required>
- 				<p id="intimeDate1">Now Loading...</p>
-				<p id="intimeDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceIntimeValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceIntimeValueInput" type="hidden" name="intimeValue" value="">
+<!-- 修正時間をFixServletに送るためのform -->
+<form action="/azps_kintai/FixServlet" method="post">
+<!-- テスト用form -->
+<!-- 		  <form action="main.jsp" method="get"> -->
+<!-- テスト結果は以下の通りなので、きちんとform情報が送れている -->
+<!-- http://localhost:8080/azps_kintai/main.jsp?
+birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInStart=1000&breakOutEnd=1000&fixComment=000&fixValue= -->
 
+			<table class="dataTable">
+
+		    <tr>
+		    <th>
+		        <b>打刻修正</b>
+			</th>
+			<td>
+				<p></p>
+			</td>
+			</tr>
+
+
+			<tr>
+		    <th>
+		        <b>打刻年月日</b>
+			</th>
+
+			<td>
+				<input class="form-text" id="until-today" type="date" name="attendanceDay"
+				placeholder="2022年3月23日" required>
+			</td>
+			</tr>
+
+
+			<tr>
+		    <th>
+		        <b>出退勤時間</b>
+			</th>
+
+			<td>
+				<input class="res_timepicker"  type="text" name="inTimeStart" placeholder="09:00"  required/>　～　
+				<input class="res_timepicker"  type="text"   name="outTimeEnd" placeholder="17:00"  required/>
+			</td>
+
+		    <th>
+		        <b>残業時間</b>
+			</th>
+			<td>
+				<input class="form-text" type="text" name="overTimeHours" maxlength="2"
+				pattern="[0-9]{1,2}" placeholder="0(数字のみ2桁まで)" required>
+			</td>
+
+			</tr>
+
+
+			<tr>
+		    <th>
+		        <b>休憩時間</b>
+			</th>
+
+			<td>
+				<input class="res_timepicker"  type="text" name="breakInStart" placeholder="09:00"  required/>　～　
+				<input class="res_timepicker"  type="text"   name="breakOutEnd" placeholder="17:00"  required/>
+			</td>
+
+			</tr>
+
+    	<tr>
+		<th>
+		　　<label class="text_center">コメント</label>
+        </th>
+        <td class="contact-body">
+		<b>
+		<textarea class="form-text" name="fixComment" placeholder="修正時のコメントを入力して下さい。(必須：100文字まで)" cols="100" rows="7" title="修正時のコメントを入力" required></textarea>
+		<br></b>
+        </td>
+        </tr>
+
+		</table>
+
+<!-- 修正申請ボタン -->
+	<div class="text_center">
+
+<button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal06">打刻修正を行う</button>
+
+<!--hidden属性でinput情報を name="fixValue"でサーブレット側に渡す -->
+<input type="hidden" name="fixValue" value="" ><br><br>
+<!-- モーダル関連を読み込むとsubmit属性(リクワイアードチェック)が機能しないので外しておく。 -->
+<input class="register_button " type="submit" value="打刻修正を行う" ><br><br>
+<!-- サブミット後自動実行してモーダルウィンドウ開いてほしい(願望) -->
+<p onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal06"></p>
+	</div>
+
+	</form>
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
     </div><!--modal-->
 
-    <div id="modal02" class="modal js-modal">
+    <div id="modal06" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
-<!--             <p>2つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
+<!-- <p>main内と通算して6つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
+<!-- 6つ目のモーダル内には打刻修正の画面が入ります -->
 
-		        <h1 >退勤しました</h1>
-				<p>本日もお疲れ様でした。帰り道もお気をつけて。</p>
+		        <h1>修正申請完了しました</h1>
+				<p></p>
  				<p id="outtimeDate1">Now Loading...</p>
 				<p id="outtimeDate2">Now Loading...</p>
 <!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
@@ -279,6 +361,7 @@
 
 画面遷移図の▽マークのところは、先月の日間集計など月ごとに切り替えるためのボタン。
 
+プレースホルダー側で労働時間や今日の日付などを関数指定できると良いな。
 -->
 
 

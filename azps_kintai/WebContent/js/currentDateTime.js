@@ -25,6 +25,8 @@ function showClock3() {
 	var msg = set2fig(nowHour) + ":" + set2fig(nowMin) + ":" + set2fig(nowSec);
 	document.getElementById("RealtimeClockArea3").innerHTML = msg;/*HTML側で"RealtimeClockArea3"指定した時に代入できるよ */
 
+//テスト用↓
+	document.getElementById("RealtimeClockArea4").innerHTML = msg;/*HTML側で"RealtimeClockArea3"指定した時に代入できるよ */
 
 	var msgDate = year + "年" + mon + "月" + date + "日" + "(" + todayweek + ")" ;
 	document.getElementById("RealtimeDate1").innerHTML = msgDate;
@@ -73,6 +75,10 @@ function pushed_Attendance() {
 
 /*	Servlet側にdatetime型で渡す値を設定。曜日情報は今回はDBに定義していないので持たせない*/
 /*出勤時のデータServletへ */
+/*現状、getメソッドでテスト送信した際に、" "が"+"、":"が"%3A"と16進数にデコードされてURLバーに表記されてしまうので
+その値がサーブレット側でUTF-8形式にエンコード変換されてきちんともとの形式で表示されるかがわからない
+ うまくいかないようなら、2022-03-23-04-07-41.604のように-で処理するか、サーブレット側で変換が必要。
+ */
 	var msgAttendancePushed = pushed_year + "-" + set2fig(pushed_mon) + "-" + set2fig(pushed_day) + " " +  set2fig(pushed_Hour) + ":" + set2fig(pushed_Min) + ":" + set2fig(pushed_Sec) + "." + pushed_msec;
 	document.getElementById("attendanceIntimeValueInput").value = msgAttendancePushed;
 	/*テスト用 */

@@ -61,13 +61,34 @@
     <div onload="pushed_Attendance()" class="content buttons">
 	<ul>
 		<li>
+<form action="/azps_kintai/MainServlet" method="post">
+<!-- 送信テスト用のフォームタグ -->
+<!--   <form action="main.jsp" method="get"> -->
+
+
+<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
+			<input id="attendanceIntimeValueInput" type="hidden" name="intimeValue" value="">
 		<!-- クリックでモーダル1を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal01">出勤</button><br>
+        <button onclick="pushed_Attendance()"  type="submit" data-target="modal01">出勤</button><br>
+<!--         <button onclick="pushed_Attendance()" class="js-modal-open" type="submit" data-target="modal01">出勤</button><br> -->
+</form>
 		</li>
 
 		<li>
+  <form action="/azps_kintai/MainServlet" method="post">
+<!-- 送信テスト用のフォームタグ -->
+<!-- <form action="main.jsp" method="get"> -->
+
+<!-- 			<p id="RealtimeClockArea4">test Loading...</p> -->
+<!--	↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作検証済み -->
+			<input id="attendanceOuttimeValueInput" type="hidden" name="outtimeValue" value="">
 		<!-- クリックでモーダル2を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal02">退勤</button><br>
+  		<button onclick="pushed_Attendance()"  type="submit"
+        data-target="modal02">退勤test</button><br>
+
+<!--         <button onsubmit="pushed_Attendance()" class="js-modal-submit-open" type="submit"
+        data-target="modal02" value="test">退勤</button><br> -->
+		</form>
 		</li>
 
     </ul>
@@ -78,13 +99,35 @@
     <div onload="pushed_Attendance()" class="content buttons">
 	<ul>
 		<li>
+ <form action="/azps_kintai/MainServlet" method="post">
+<!-- 送信テスト用のフォームタグ -->
+<!--   <form action="main.jsp" method="get"> -->
+<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
+<!-- 				<p id="attendanceBreakinValueInputtest">test Loading...</p> -->
+<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
+			<input id="attendanceBreakinValueInput" type="hidden" name="breakinValue" value="">
+
         <!-- クリックでモーダル3を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal03">休憩 入</button><br>
+        <button onclick="pushed_Attendance()" data-target="modal03">休憩 入</button><br>
+<!--         <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal03">休憩 入</button><br> -->
+
+
+</form>
 		</li>
 
 		<li>
+ <form action="/azps_kintai/MainServlet" method="post">
+<!-- 送信テスト用のフォームタグ -->
+<!--   <form action="main.jsp" method="get"> -->
+<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
+<!-- 				<p id="attendanceBreakoutValueInputtest">test Loading...</p> -->
+<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
+			<input id="attendanceBreakoutValueInput" type="hidden" name="breakoutValue" value="">
 		<!-- クリックでモーダル4を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal04">休憩 戻</button><br>
+        <button onclick="pushed_Attendance()" data-target="modal04">休憩 戻</button><br>
+<!--         <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal04">休憩 戻</button><br> -->
+</form>
+
 		</li>
 
     </ul>
@@ -92,21 +135,18 @@
 
 
 <!-- ここから下でモーダル内の表示を実装 -->
- <form action="MainServlet" method="post">
     <div id="modal01" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
 <!--             <p>1つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
 
+ <!-- <form action="MainServlet" method="post"> -->
+<!-- 送信テスト用のフォームタグ -->
+
 		        <h1 >出勤しました</h1>
 				<p>おはようございます。今日も一日頑張りましょう！</p>
  				<p id="intimeDate1">Now Loading...</p>
 				<p id="intimeDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceIntimeValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceIntimeValueInput" type="hidden" name="intimeValue" value="">
-
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
@@ -121,10 +161,6 @@
 				<p>本日もお疲れ様でした。帰り道もお気をつけて。</p>
  				<p id="outtimeDate1">Now Loading...</p>
 				<p id="outtimeDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceOuttimeValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceOuttimeValueInput" type="hidden" name="outtimeValue" value="">
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
@@ -139,10 +175,6 @@
 				<p>お疲れ様です。ゆっくり休息をとってください。</p>
  				<p id="brealinDate1">Now Loading...</p>
 				<p id="breakinDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceBreakinValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceBreakinValueInput" type="hidden" name="breakinValue" value="">
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
@@ -157,15 +189,10 @@
 				<p>お疲れ様です。引き続き頑張りましょう！</p>
  				<p id="breakoutDate1">Now Loading...</p>
 				<p id="breakoutDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceBreakoutValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceBreakoutValueInput" type="hidden" name="breakoutValue" value="">
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->+
     </div><!--modal-->
-</form>
 
 <!-- <div onload="pushed_Attendance()" class="buttons">
 <ul> -->
@@ -249,8 +276,8 @@
 
 <!-- 日間勤怠集計読み込み部分 -->
 <!-- 静的または動的インクルードの選択 -->
-<jsp:include page="/WEB-INF/jsp/daywork_result.jsp" />
-<%-- <%@ include file="/WEB-INF/jsp/daywork_result.jsp" %> --%>
+<%-- <jsp:include page="/WEB-INF/jsp/daywork_result.jsp" /> --%>
+<%@ include file="/WEB-INF/jsp/daywork_result.jsp" %>
 
 
 <!-- 月間勤怠集計読み込み部分 -->
