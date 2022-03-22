@@ -8,8 +8,8 @@
   display: block;
   width: 100%;/*ウィンドウサイズに対する横幅を指定*/
   margin: 1em 0;/*データテーブル全体の枠の外側余白を指定*/
-margin-left: 20px;/*テーブル全体左側の余白を少しあける*/
-margin-right:20px;/*テーブル全体右側の余白を少しあける*/
+margin-left: auto;/*テーブル全体左側の余白を少しあける 右が機能してなくあまり意味ないのでautoに変更*/
+margin-right:auto;/*テーブル全体右側の余白を少しあける　現在機能してない様子なのでautoに変更*/
 }
 
 .dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
