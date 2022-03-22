@@ -19,7 +19,7 @@ public class AccountDAOTest {
 		AccountBeans result = dao.Select_All(login);
 		if (result != null &&
 				result.getAccount_Num() == 0 &&         //*******
-				result.getMuster_Flag() == 0 &&         //*******
+				result.getMaster_Flag() == 0 &&         //*******
 				result.getEmp_Id().equals("*******") &&
 				result.getName().equals("*******") &&
 				result.getPass().equals("*******") &&

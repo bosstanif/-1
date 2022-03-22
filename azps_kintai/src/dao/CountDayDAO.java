@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.AccountBeans;
-import model.Login;
 
 public class CountDayDAO {
 
@@ -16,13 +17,14 @@ public class CountDayDAO {
 	private final String DB_USER = "root";
 	private final String DB_PASS = "root";
 
-	public void Insert(AccountBeans accountBeans) {//毎日一回
+	public void Insert(AccountBeans accountBeans) {//毎日一回ログイン成功したら
 		// データベースへ接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// INSERT文を準備
 			String sql = "INSERT INTO COUNTDAY (DAY_NUM,DAYTIME,INTIME,OUTTIME,BREAKIN,BREAKOUT)"
-					+ " VALUES (DAYTIME = ?,INTIME = ?,OUTTIME = ?,BREAKIN =?,BREAKOUT = ?)" + " WHERE ACCOUNT_NUM = ?";
+					+ " VALUES (DAYTIME = ?,INTIME = ?,OUTTIME = ?,BREAKIN =?,BREAKOUT = ?)"
+					+ " WHERE ACCOUNT_NUM = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -55,36 +57,45 @@ public class CountDayDAO {
 		}
 	}
 
-	public AccountBeans Select_All(AccountBeans accountBeans) {// × 主要コンストラクタを二つにしたら片方がnewされて消えていく？
+	public List<AccountBeans> Select_AllTime(AccountBeans accountBeans,DAY_NUM = 値１ AND DAY_NUM =値２) {//労働情報のリスト化全件取得//日付の縛りがいる
+
+		List<AccountBeans> workTime_List =new ArrayList<AccountBeans>();
+
+		AccountBeans workTime = null;
 
 		// データベースへ接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SELECT文を準備
 			String sql = "SELECT DAY_NUM,DAYTIME,INTIME,OUTTIME,BREAKIN,BREAKOUT"
-					+ " FROM COUNTDAY WHERE EMP_ID = ? AND PASS = ?";
+					+ " FROM COUNTDAY WHERE EMP_ID = ? AND PASS = ?"
+					+ " AND DAY_NUM = 値１ AND DAY_NUM =値２";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setString(1, accountBeans.getEmp_Id());// 社員ID
-			pStmt.setString(2, accountBeans.getPass());// パスワード
+			pStmt.setString(1, accountBeans.getEmp_Id());
+			pStmt.setString(2, accountBeans.getPass());
+			pStmt.setInt(3, DAY_NUM = 値１);
+			pStmt.setInt(3, DAY_NUM =値２);
 
 			// SELECT文を実行し、結果表を取得
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表からデータを取得
 			while (rs.next()) {
-				int account_Num = rs.getInt("ACCOUNT_NUM");
-				int muster_Flag = rs.getInt("MUSTER_FLAG");
-				String emp_Id = rs.getString("EMP_ID");
-				String name = rs.getString("NAME");
-				String pass = rs.getString("PASS");
-				int status = rs.getInt("STATUS");
-				String comment = rs.getString("COMMENT");
+				int dayNum = rs.getInt("DAY_NUM");
+				int dayTime = rs.getInt("DAYTIME");
+				int inTime = rs.getInt("INTIME");
+				int outTime = rs.getInt("OUTTIME");
+				int breakIn = rs.getInt("BREAKIN");
+				int breakOut = rs.getInt("BREAKOUT");
 
-				accountBeans = new AccountBeans(account_Num, muster_Flag, emp_Id, name, pass, status, comment);
+				workTime = new AccountBeans(dayNum, dayTime, inTime, outTime, breakIn, breakOut);
+
+				// Listにインスタンスを順番に詰める
+				workTime_List.add(workTime);
 			}
-			return accountBeans;
+			return workTime_List;
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -92,4 +103,32 @@ public class CountDayDAO {
 		return null;
 
 	}
+
+	public void Update_ALL(AccountBeans accountBeans) {//修正したい日時データをAccountBeansに設定しないといけない
+
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "UPDATE ACCOUNT SET INTIME = ?,OUTTIME = ?,BREAKIN =?,BREAKOUT = ? WHERE EMP_ID = ? AND PASS = ? AND DAYTIME = ?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setInt(1, accountBeans.getInTime());
+			pStmt.setInt(2, accountBeans.getOutTime());
+			pStmt.setInt(3, accountBeans.getBreakIn());
+			pStmt.setInt(4, accountBeans.getBreakOut());
+			pStmt.setString(5, accountBeans.getEmp_Id());
+			pStmt.setString(6, accountBeans.getPass());
+			pStmt.setInt(7, accountBeans.getDayTime());
+
+			// SELECT文を実行し、結果表を取得
+			pStmt.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 }

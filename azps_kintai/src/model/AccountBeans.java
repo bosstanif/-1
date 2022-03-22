@@ -5,23 +5,23 @@ import java.io.Serializable;
 public class AccountBeans implements Serializable {
 
 	private int account_Num;
-	private int muster_Flag;
+	private int master_Flag;
 	private String emp_Id;
 	private String name;
 	private String pass;
 	private int status;
 	private String comment;
-	
+
 	private int dayNum;
 	private int dayTime;
 	private int inTime;
 	private int outTime;
 	private int breakIn;
 	private int breakOut;
-	
+
 	@Override//確認作業用
 	public String toString() {
-		return "AccountBeans [account_Num=" + account_Num + ", muster_Flag=" + muster_Flag + ", emp_Id=" + emp_Id
+		return "AccountBeans [account_Num=" + account_Num + ", muster_Flag=" + master_Flag + ", emp_Id=" + emp_Id
 				+ ", name=" + name + ", pass=" + pass + ", status=" + status + ", comment=" + comment + "]";
 	}
 
@@ -30,11 +30,11 @@ public class AccountBeans implements Serializable {
 	}
 
     //AccountDAOやり取り用
-	public AccountBeans(int account_Num, int muster_Flag, String emp_Id, String name, String pass, int status,
+	public AccountBeans(int account_Num, int master_Flag, String emp_Id, String name, String pass, int status,
 			String comment) {
 
 		this.account_Num = account_Num;
-		this.muster_Flag = muster_Flag;
+		this.master_Flag = master_Flag;
 		this.emp_Id = emp_Id;
 		this.name = name;
 		this.pass = pass;
@@ -43,8 +43,8 @@ public class AccountBeans implements Serializable {
 	}
     //CountDayDAOやり取り用
 	public AccountBeans( int dayNum, int dayTime, int inTime, int outTime, int breakIn, int breakOut) {
-	
-		
+
+
 		this.dayNum = dayNum;
 		this.dayTime = dayTime;
 		this.inTime = inTime;
@@ -61,12 +61,12 @@ public class AccountBeans implements Serializable {
 		this.account_Num = account_Num;
 	}
 
-	public int getMuster_Flag() {
-		return muster_Flag;
+	public int getMaster_Flag() {
+		return master_Flag;
 	}
 
-	public void setMuster_Flag(int muster_Flag) {
-		this.muster_Flag = muster_Flag;
+	public void setMaster_Flag(int master_Flag) {
+		this.master_Flag = master_Flag;
 	}
 
 	public String getEmp_Id() {
@@ -109,7 +109,7 @@ public class AccountBeans implements Serializable {
 		this.comment = comment;
 	}
 
-	
+
 	public int getDayNum() {
 		return dayNum;
 	}
