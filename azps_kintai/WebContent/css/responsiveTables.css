@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* =============================================================================
+   Responsive Table CSS
+   ========================================================================== */
+
+.dataTable {
+  display: block;
+  width: 100%;/*ウィンドウサイズに対する横幅を指定*/
+  margin: 1em 0;/*データテーブル全体の枠の外側余白を指定*/
+margin-left: 20px;/*テーブル全体左側の余白を少しあける*/
+margin-right:20px;/*テーブル全体右側の余白を少しあける*/
+}
+
+.dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
+  display: block;
+}
+
+.dataTable thead {
+  float: left;
+}
+
+.dataTable tbody {/*tbody内の範囲に適用。列名以外*/
+  width: auto;/**/
+  position: relative;
+  overflow-x: auto;
+}
+
+.dataTable td, .dataTable th {/*tdデータと 列名thのそぞれぞれの余白などを指定*/
+  padding: .625em;
+  line-height: 1.5em;
+  border-bottom: 1px dashed #ccc;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.dataTable th {/*th列名のフォントや背景に対する指定*/
+  text-align: center;
+  background: rgba(0, 191, 255, 0.34);/*薄めの青色を指定34の部分は色の濃さ*/
+  border-bottom: 1px dashed #aaa;
+
+}
+
+.dataTable tbody tr {
+  display: table-cell;
+}
+
+.dataTable tbody td {
+  display: block;
+}
+
+.dataTable tr:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+@media screen and (min-width: 50em) {
+
+  .dataTable {
+    display: table;
+  }
+
+  .dataTable thead {
+    display: table-header-group;
+    float: none;
+  }
+
+  .dataTable tbody {
+    display: table-row-group;
+  }
+
+  .dataTable thead tr, .dataTable tbody tr {
+    display: table-row;
+  }
+
+  .dataTable th, .dataTable tbody td {
+    display: table-cell;
+  }
+
+  .dataTable td, .dataTable th {
+    width: auto;
+  }
+
+}
+
+/*自作*/
+/*コメントのボタン色を青に*/
+.comment_button{
+color: blue;
+/*2重下線を引く*/
+border-bottom:double;/*二重線を引く*/
+border-color:#FF0000;
+border-width:3px;
+}

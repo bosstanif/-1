@@ -145,7 +145,7 @@ img{/*画像の大きさの初期値指定することで、画像が親要素�
 .register_button{/*ボタンのクラスにフォントや色、角丸、余白の指定を入れている*/
 	font-size: 1rem;
 	color: #FFFFFF;
-	background: #82AD24;
+	background: rgb(128, 128, 128);
 	border-radius: 10px;
 	border: solid;
 	border-color: #B1B1B1;
