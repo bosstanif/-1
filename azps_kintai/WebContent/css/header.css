@@ -48,7 +48,7 @@ color:#FFAA00;
 /*ロゴ画像のサイズと余白の調整*/
 
 .header_img_logo{
-	width:170px;/*ロゴの横幅*/
+	width:50px;/*ロゴの横幅。縦幅は自動で決まる*/
 	margin-top:10px;/*上部余白の指定*/
 	margin-left:20px;/*上部余白の指定*/
 }
