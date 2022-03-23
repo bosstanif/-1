@@ -1,3 +1,4 @@
+//OK確認03/23
 package test;
 
 import model.AccountBeans;
@@ -11,7 +12,7 @@ public class LoginLogicTest {
 	}
 
 	public static void testExecute1() {
-		Login login = new Login("*******", "*******");
+		Login login = new Login("01", "testpass01");
 		LoginLogic bo = new LoginLogic();
 		AccountBeans accountBeans = bo.execute(login);
 		if (accountBeans != null) {
@@ -21,8 +22,8 @@ public class LoginLogicTest {
 		}
 	}
 
-	public static void testExecute2() {
-		Login login = new Login("******", "*******");
+	public static void testExecute2() {//パス違い
+		Login login = new Login("01","pass01");
 		LoginLogic bo = new LoginLogic();
 		AccountBeans accountBeans = bo.execute(login);
 		if (accountBeans == null) {

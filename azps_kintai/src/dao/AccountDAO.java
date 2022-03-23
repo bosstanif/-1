@@ -235,7 +235,8 @@ public class AccountDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// INSERT文を準備
-			String sql = "INSERT INTO ACCOUNT VALUES (MASTER_FLAG = ?,EMP_ID = ?,NAME = ?,PASS = ?,STATUS =?)";
+			String sql = "INSERT INTO ACCOUNT (MASTER_FLAG,EMP_ID,NAME,PASS,STATUS)"
+					+ " VALUES(?,?,?,?,?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -244,6 +245,7 @@ public class AccountDAO {
 			pStmt.setString(3, accountBeans.getName());//名前
 			pStmt.setString(4, accountBeans.getPass());//パスワード
 			pStmt.setInt(5, accountBeans.getStatus());//勤務状況デフォルトあり
+
 
 			// INSERT文を実行し、結果表を取得
 			pStmt.executeQuery();
