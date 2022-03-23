@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class AccountBeans implements Serializable {
 
@@ -13,11 +14,11 @@ public class AccountBeans implements Serializable {
 	private String comment;
 
 	private int dayNum;
-	private int dayTime;
-	private int inTime;
-	private int outTime;
-	private int breakIn;
-	private int breakOut;
+	private Date dayTime;
+	private Date inTime;
+	private Date outTime;
+	private Date breakIn;
+	private Date breakOut;
 
 	@Override//確認作業用
 	public String toString() {
@@ -42,7 +43,7 @@ public class AccountBeans implements Serializable {
 		this.comment = comment;
 	}
     //CountDayDAOやり取り用
-	public AccountBeans( int dayNum, int dayTime, int inTime, int outTime, int breakIn, int breakOut) {
+	public AccountBeans( int dayNum, Date dayTime, Date inTime, Date outTime, Date breakIn, Date breakOut) {
 
 
 		this.dayNum = dayNum;
@@ -118,31 +119,31 @@ public class AccountBeans implements Serializable {
 		this.dayNum = dayNum;
 	}
 
-	public int getDayTime() {
+	public Date getDayTime() {
 		return dayTime;
 	}
 
-	public void setDayTime(int dayTime) {
+	public void setDayTime(Date dayTime) {
 		this.dayTime = dayTime;
 	}
 
-	public int getInTime() {
+	public Date getInTime() {
 		return inTime;
 	}
 
-	public void setInTime(int inTime) {
+	public void setInTime(Date inTime) {
 		this.inTime = inTime;
 	}
 
-	public int getOutTime() {
+	public Date getOutTime() {
 		return outTime;
 	}
 
-	public void setOutTime(int outTime) {
+	public void setOutTime(Date outTime) {
 		this.outTime = outTime;
 	}
 
-	public int getBreakIn() {
+	public Date getBreakIn() {
 		return breakIn;
 	}
 

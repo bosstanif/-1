@@ -1,5 +1,7 @@
 package test;
 
+import model.AccountBeans;
+
 public class testCountDay {
 
 	public static void main(String[] args) {
@@ -13,4 +15,10 @@ public class testCountDay {
 
 	}
 
+	public static void test1() {
+		/* int dayNum, int dayTime, int inTime, int outTime, int breakIn, int breakOut*/
+		                                              //2は確認のため仮     
+		AccountBeans accountBeans = new AccountBeans(2,2022-03-23,2022-03-23 00:00:00.000000,2022-03-23 00:00:00.000000,2022-03-23 00:00:00.000000,2022-03-23 00:00:00.000000);
+	
+	}
 }

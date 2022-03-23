@@ -16,7 +16,7 @@ public class testAccount {
 		6：全データ閲覧（個人）
 		*/
 
-		//test1();//OK確認03/23
+		test1();//OK確認03/23
 
 		//test3();//OK確認03/23
 		//test4();//OK確認03/23
