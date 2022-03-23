@@ -13,15 +13,19 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    HttpSession session = request.getSession();
-    session.invalidate();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    //フォワード
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/");
-    dispatcher.forward(request, response);
-  }
+		//セッションスコープの破棄
+		HttpSession session = request.getSession();
+		session.invalidate();
+
+		//ログアウト画面にフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");/* */
+		dispatcher.forward(request, response);
+
+	}
 
 }
