@@ -1,3 +1,5 @@
+/*最終更新03/23　更新者/井川*/
+
 package servlet;
 
 import java.io.IOException;
@@ -21,6 +23,8 @@ public class LogoutServlet extends HttpServlet {
 		//セッションスコープの破棄
 		HttpSession session = request.getSession();
 		session.invalidate();
+
+		//ログイン状態がなかったときはlogin.jspからのアクセス
 
 		//ログアウト画面にフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");/* */

@@ -35,10 +35,10 @@ $(function(){
 <!-- 変数未定義なので一度コメント -->
 
 <% if(loginAccount == null){%>
-<!-- 製作者側でプロジェクト名が異なる可能性があるので、コンテキストパスで飛ばす -->
-<%-- <a href="<%= request.getContextPath() %>/LogoutServlet"> --%>
+<!-- 各製作者側でプロジェクト名が異なる可能性があるので、コンテキストパスで飛ばす -->
+<a href="<%= request.getContextPath() %>/LogoutServlet">
 <!-- 動作テストのためログインサーブレットへ飛ばしてみる -->
-<a href="<%= request.getContextPath() %>/LoginServlet">
+<%-- <a href="<%= request.getContextPath() %>/LoginServlet"> --%>
 <!-- アンカータグ。ログイン前なので飛ばす先はlogin.jsp。「/login.jsp」でも動く -->
 <!--左上部画像の読み込み。ヘッダ上部くいだおれログのロゴ -->
 <img class=header_img_logo src="images/timecardAppLogo300_300.png" alt="従業員 ログイン画面へ" >
