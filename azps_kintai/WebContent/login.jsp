@@ -57,7 +57,7 @@
 
 <h5 class="h1_login">勤怠管理システム<br>従業員ログイン画面</h5>
 
-<form action="/azps_kintai/Login" method="post">
+<form action="/azps_kintai/LoginServlet" method="post">
 
 <table class="contact-table">
 <tbody>
@@ -93,7 +93,10 @@ pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" re
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 <%--<%@ include file="/WEB-INF/jsp/footer.jsp" %> --%>
 
+<!-- ToDo
+管理者側オミットしたので、新規ユーザー登録機能の画面をつくる
 
+ -->
 
 </body>
 
