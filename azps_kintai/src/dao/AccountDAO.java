@@ -111,7 +111,7 @@ public class AccountDAO {
 			pStmt.setString(2, accountBeans.getPass());//パスワード
 
 			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,8 +132,7 @@ public class AccountDAO {
 			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
 			pStmt.setString(2, accountBeans.getPass());//パスワード
 
-			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -154,8 +153,7 @@ public class AccountDAO {
 			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
 			pStmt.setString(2, accountBeans.getPass());//パスワード
 
-			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,8 +174,7 @@ public class AccountDAO {
 			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
 			pStmt.setString(2, accountBeans.getPass());//パスワード
 
-			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,12 +192,12 @@ public class AccountDAO {
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
-			pStmt.setString(2, accountBeans.getPass());//パスワード
-			pStmt.setString(3, accountBeans.getComment());//コメント
+			pStmt.setString(1, accountBeans.getComment());//コメント
+			pStmt.setString(2, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(3, accountBeans.getPass());//パスワード
 
-			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -214,15 +211,17 @@ public class AccountDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SELECT文を準備
-			String sql = "UPDATE ACCOUNT SET NAME = ?,PASS = ?,STATUS =? COMMENT =? WHERE EMP_ID = ? AND PASS = ?";
+			String sql = "UPDATE ACCOUNT SET NAME = ?,STATUS =?, COMMENT =? WHERE EMP_ID = ? AND PASS = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setString(1, accountBeans.getEmp_Id());//社員ID
-			pStmt.setString(2, accountBeans.getPass());//パスワード
+			pStmt.setString(1, accountBeans.getName());
+			pStmt.setInt(2, accountBeans.getStatus());
+			pStmt.setString(3, accountBeans.getComment());
+			pStmt.setString(4, accountBeans.getEmp_Id());//社員ID
+			pStmt.setString(5, accountBeans.getPass());//パスワード
 
-			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,7 +234,7 @@ public class AccountDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// INSERT文を準備
-			String sql = "INSERT INTO ACCOUNT (MASTER_FLAG,EMP_ID,NAME,PASS,STATUS)"
+			String sql = "INSERT INTO ACCOUNT(MASTER_FLAG,EMP_ID,NAME,PASS,STATUS)"
 					+ " VALUES(?,?,?,?,?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -246,9 +245,7 @@ public class AccountDAO {
 			pStmt.setString(4, accountBeans.getPass());//パスワード
 			pStmt.setInt(5, accountBeans.getStatus());//勤務状況デフォルトあり
 
-
-			// INSERT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

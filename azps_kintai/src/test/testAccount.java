@@ -16,12 +16,12 @@ public class testAccount {
 		6：全データ閲覧（個人）
 		*/
 
-		test1();
+		//test1();//OK確認03/23
 
-		//test3();
-		//test4();
-		//test5();
-		//test6();
+		//test3();//OK確認03/23
+		//test4();//OK確認03/23
+		//test5();//OK確認03/23
+		//test6();//OK確認03/23
 
 	}
 
@@ -45,7 +45,7 @@ public class testAccount {
 
 	public static void test4() {
 		AccountBeans accountBeans = new AccountBeans(2, 0, "02", "testname2", "testpass02", 0, "test_comment02");
-		accountBeans.setComment("更新テスト01");
+		accountBeans.setComment("更新テスト02");
 		AccountDAO dao = new AccountDAO();
 		dao.Update_Comment(accountBeans);
 
@@ -55,9 +55,7 @@ public class testAccount {
 		/*int account_Num, int master_Flag, String emp_Id, String name, String pass, int status,
 		String comment*/ //2は確認のため仮
 		AccountBeans accountBeans = new AccountBeans(2, 0, "02", "testname2", "testpass02", 0, "test_comment02");
-		accountBeans.setEmp_Id("03");
 		accountBeans.setName("testname3");
-		accountBeans.setPass("testpass03");
 		accountBeans.setStatus(3);
 		accountBeans.setComment("更新テスト03");
 		AccountDAO dao = new AccountDAO();
@@ -68,6 +66,6 @@ public class testAccount {
 		AccountBeans accountBeans = new AccountBeans(2, 0, "02", "testname2", "testpass02", 0, "test_comment02");
 		AccountDAO dao = new AccountDAO();
 		dao.Select_All(accountBeans);
-		accountBeans.toString();
+		System.out.println(accountBeans.toString());
 	}
 }

@@ -128,7 +128,7 @@ public class CountDayDAO {
 
 
 			// SELECT文を実行し、結果表を取得
-			pStmt.executeQuery();
+			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
