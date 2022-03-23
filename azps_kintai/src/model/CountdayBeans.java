@@ -10,6 +10,9 @@ public class CountdayBeans implements Serializable {
 	private int numberOfMonth;//出勤数
 	int breakTimeOfMonth;
 
+	/*Int-String, String-DATE
+	String.valueof(),SimpleDateFormat.parse*/
+
 	@Override
 	public String toString() {
 		return "CountdayBeans [monthAllTime=" + monthAllTime + ", monthWorkTime=" + monthWorkTime + ", numberOfMonth="
@@ -22,8 +25,8 @@ public class CountdayBeans implements Serializable {
 
 		for (AccountBeans work : workTime_List) {
 
-			this.monthAllTime += (work.getInTime() - work.getOutTime());//拘束時間　出勤から退勤まで
-			breakTimeOfMonth += (work.getBreakIn() - work.getBreakOut());
+			this.monthAllTime += (Integer.parseInt(work.getInTime()) - Integer.parseInt(work.getOutTime()));//拘束時間　出勤から退勤まで
+			breakTimeOfMonth += (Integer.parseInt(work.getBreakIn()) - Integer.parseInt(work.getBreakOut()));
 		}
 
 		this.monthWorkTime = monthAllTime - breakTimeOfMonth;//実労働時間

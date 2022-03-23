@@ -18,47 +18,37 @@ public class CountDayDAO {
 	private final String DB_PASS = "root";
 
 	public void Insert(AccountBeans accountBeans) {//毎日一回ログイン成功したら
+
+		System.out.println(accountBeans.toString());
 		// データベースへ接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// INSERT文を準備
-			String sql = "INSERT INTO COUNTDAY (DAY_NUM,DAYTIME,INTIME,OUTTIME,BREAKIN,BREAKOUT)"
-					+ " VALUES (DAYTIME = ?,INTIME = ?,OUTTIME = ?,BREAKIN =?,BREAKOUT = ?)"
-					+ " WHERE ACCOUNT_NUM = ?";
+			String sql = "INSERT INTO COUNTDAY (ACCOUNT_NUM,DAYTIME,INTIME,OUTTIME,BREAKIN,BREAKOUT,FIX_DATE)"
+					+ " VALUES (?,?,?,?,?,?,?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setInt(1, accountBeans.getDayTime());// 管理権限デフォルトあり
-			pStmt.setInt(2, accountBeans.getInTime());// 社員番号
-			pStmt.setInt(3, accountBeans.getOutTime());// 名前
-			pStmt.setInt(4, accountBeans.getBreakIn());// パスワード
-			pStmt.setInt(5, accountBeans.getBreakOut());// 勤務状況デフォルトあり
-
-			pStmt.setInt(6, accountBeans.getAccount_Num());// アカウント番号
+			pStmt.setInt(1, accountBeans.getAccount_Num());// アカウント番号
+			pStmt.setString(2, accountBeans.getDayTime());// 管理権限デフォルトあり
+			pStmt.setString(3, accountBeans.getInTime());// 社員番号
+			pStmt.setString(4, accountBeans.getOutTime());// 名前
+			pStmt.setString(5, accountBeans.getBreakIn());// パスワード
+			pStmt.setString(6, accountBeans.getBreakOut());// 勤務状況デフォルトあり
+			pStmt.setString(7, accountBeans.getDayTime());
 
 			// INSERT文を実行し、結果表を取得
-			ResultSet rs = pStmt.executeQuery();
+			pStmt.executeUpdate();
 
-			// 結果表からデータを取得
-			while (rs.next()) {
-				int dayNum = rs.getInt("DAY_NUM");
-				int dayTime = rs.getInt("DAYTIME");
-				int inTime = rs.getInt("INTIME");
-				int outTime = rs.getInt("OUTTIME");
-				int breakIn = rs.getInt("BREAKIN");
-				int breakOut = rs.getInt("BREAKOUT");
-
-				accountBeans = new AccountBeans(dayNum, dayTime, inTime, outTime, breakIn, breakOut);
-			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		}
+	}
 
 	public List<AccountBeans> Select_AllTime(AccountBeans accountBeans/*,DAY_NUM = 値１ AND DAY_NUM =値２*/) {//労働情報のリスト化全件取得//日付の縛りがいる
 
-		List<AccountBeans> workTime_List =new ArrayList<AccountBeans>();
+		List<AccountBeans> workTime_List = new ArrayList<AccountBeans>();
 
 		AccountBeans workTime = null;
 
@@ -75,7 +65,7 @@ public class CountDayDAO {
 			pStmt.setString(1, accountBeans.getEmp_Id());
 			pStmt.setString(2, accountBeans.getPass());
 			pStmt.setInt(3, DAY_NUM = 値１);
-			pStmt.setInt(3, DAY_NUM =値２);
+			pStmt.setInt(3, DAY_NUM = 値２);
 
 			// SELECT文を実行し、結果表を取得
 			ResultSet rs = pStmt.executeQuery();
@@ -83,11 +73,11 @@ public class CountDayDAO {
 			// 結果表からデータを取得
 			while (rs.next()) {
 				int dayNum = rs.getInt("DAY_NUM");
-				int dayTime = rs.getInt("DAYTIME");
-				int inTime = rs.getInt("INTIME");
-				int outTime = rs.getInt("OUTTIME");
-				int breakIn = rs.getInt("BREAKIN");
-				int breakOut = rs.getInt("BREAKOUT");
+				String dayTime = rs.getString("DAYTIME");
+				String inTime = rs.getString("INTIME");
+				String outTime = rs.getString("OUTTIME");
+				String breakIn = rs.getString("BREAKIN");
+				String breakOut = rs.getString("BREAKOUT");
 
 				workTime = new AccountBeans(dayNum, dayTime, inTime, outTime, breakIn, breakOut);
 
@@ -110,22 +100,21 @@ public class CountDayDAO {
 
 			// SELECT文を準備
 			String sql = "UPDATE ACCOUNT SET INTIME = ?,OUTTIME = ?,BREAKIN =?,BREAKOUT = ?,FIX_DATE =?"
-					   + " WHERE EMP_ID = ? AND PASS = ? AND DAYTIME = ?"
-					   + " AND DAY_NUM = 値１ AND DAY_NUM =値２";
+					+ " WHERE EMP_ID = ? AND PASS = ? AND DAYTIME = ?"
+					+ " AND DAY_NUM = 値１ AND DAY_NUM =値２";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			pStmt.setInt(1, accountBeans.getInTime());
-			pStmt.setInt(2, accountBeans.getOutTime());
-			pStmt.setInt(3, accountBeans.getBreakIn());
-			pStmt.setInt(4, accountBeans.getBreakOut());
-			pStmt.setInt(5, accountBeans.getDayTime());//FIX_DATE
+			pStmt.setString(1, accountBeans.getInTime());
+			pStmt.setString(2, accountBeans.getOutTime());
+			pStmt.setString(3, accountBeans.getBreakIn());
+			pStmt.setString(4, accountBeans.getBreakOut());
+			pStmt.setString(5, accountBeans.getDayTime());//FIX_DATE
 			pStmt.setString(6, accountBeans.getEmp_Id());
 			pStmt.setString(7, accountBeans.getPass());
-			pStmt.setInt(8, accountBeans.getDayTime());
+			pStmt.setString(8, accountBeans.getDayTime());
 			pStmt.setInt(9, DAY_NUM = 値１);
-			pStmt.setInt(10, DAY_NUM =値２);
-
+			pStmt.setInt(10, DAY_NUM = 値２);
 
 			// SELECT文を実行し、結果表を取得
 			pStmt.executeUpdate();

@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 public class AccountBeans implements Serializable {
 
@@ -14,16 +14,18 @@ public class AccountBeans implements Serializable {
 	private String comment;
 
 	private int dayNum;
-	private Date dayTime;
-	private Date inTime;
-	private Date outTime;
-	private Date breakIn;
-	private Date breakOut;
+	private String dayTime;
+	private String inTime;
+	private String outTime;
+	private String breakIn;
+	private String breakOut;
 
-	@Override//確認作業用
+	@Override
 	public String toString() {
-		return "AccountBeans [account_Num=" + account_Num + ", muster_Flag=" + master_Flag + ", emp_Id=" + emp_Id
-				+ ", name=" + name + ", pass=" + pass + ", status=" + status + ", comment=" + comment + "]";
+		return "AccountBeans [account_Num=" + account_Num + ", master_Flag=" + master_Flag + ", emp_Id=" + emp_Id
+				+ ", name=" + name + ", pass=" + pass + ", status=" + status + ", comment=" + comment + ", dayNum="
+				+ dayNum + ", dayTime=" + dayTime + ", inTime=" + inTime + ", outTime=" + outTime + ", breakIn="
+				+ breakIn + ", breakOut=" + breakOut + "]";
 	}
 
 	public AccountBeans() {
@@ -43,7 +45,7 @@ public class AccountBeans implements Serializable {
 		this.comment = comment;
 	}
     //CountDayDAOやり取り用
-	public AccountBeans( int dayNum, Date dayTime, Date inTime, Date outTime, Date breakIn, Date breakOut) {
+	public AccountBeans( int dayNum, String dayTime, String inTime, String outTime, String breakIn, String breakOut) {
 
 
 		this.dayNum = dayNum;
@@ -119,43 +121,43 @@ public class AccountBeans implements Serializable {
 		this.dayNum = dayNum;
 	}
 
-	public Date getDayTime() {
+	public String getDayTime() {
 		return dayTime;
 	}
 
-	public void setDayTime(Date dayTime) {
+	public void setDayTime(String dayTime) {
 		this.dayTime = dayTime;
 	}
 
-	public Date getInTime() {
+	public String getInTime() {
 		return inTime;
 	}
 
-	public void setInTime(Date inTime) {
+	public void setInTime(String inTime) {
 		this.inTime = inTime;
 	}
 
-	public Date getOutTime() {
+	public String getOutTime() {
 		return outTime;
 	}
 
-	public void setOutTime(Date outTime) {
+	public void setOutTime(String outTime) {
 		this.outTime = outTime;
 	}
 
-	public Date getBreakIn() {
+	public String getBreakIn() {
 		return breakIn;
 	}
 
-	public void setBreakIn(int breakIn) {
+	public void setBreakIn(String breakIn) {
 		this.breakIn = breakIn;
 	}
 
-	public int getBreakOut() {
+	public String getBreakOut() {
 		return breakOut;
 	}
 
-	public void setBreakOut(int breakOut) {
+	public void setBreakOut(String breakOut) {
 		this.breakOut = breakOut;
 	}
 
