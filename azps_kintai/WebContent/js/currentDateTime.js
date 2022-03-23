@@ -22,14 +22,17 @@ function showClock3() {
 	var nowSec  = nowTime.getSeconds(); //秒(0～59)
 //	var nowmsec = nowdate.getMilliseconds(); // ミリ秒(0～999) //今回は格納や表示の必要性がないのでミリ秒はオミット
 
+//こちらが日付
+	var msgDate = year + "年" + mon + "月" + date + "日" + "(" + todayweek + ")" ;
+	document.getElementById("RealtimeDate1").innerHTML = msgDate;
+
+//こちらが時間
 	var msg = set2fig(nowHour) + ":" + set2fig(nowMin) + ":" + set2fig(nowSec);
 	document.getElementById("RealtimeClockArea3").innerHTML = msg;/*HTML側で"RealtimeClockArea3"指定した時に代入できるよ */
 
 //テスト用↓
-	document.getElementById("RealtimeClockArea4").innerHTML = msg;/*HTML側で"RealtimeClockArea3"指定した時に代入できるよ */
+//	document.getElementById("RealtimeClockArea4").innerHTML = msg;/*HTML側で"RealtimeClockArea3"指定した時に代入できるよ */
 
-	var msgDate = year + "年" + mon + "月" + date + "日" + "(" + todayweek + ")" ;
-	document.getElementById("RealtimeDate1").innerHTML = msgDate;
 }
 setTimeout('showClock3()',0);//0ミリ秒（0秒）目の値を1度だけ取得これによりLoadingが一瞬しか表示されなくなる。
 setInterval('showClock3()',1000);//1000ミリ秒（1秒）ごとに値を取得
