@@ -124,7 +124,7 @@ div.buttons {
 } */
 
 .modal {
-  display: none;
+  display: none;/*ここが原因の可能性*/
   position: fixed;
   z-index: 1;
   left: 0;

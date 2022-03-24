@@ -1,7 +1,10 @@
-<!-- 最終更新日時0323 -->
+<!-- 最終更新日時0324 -->
 <!-- 作成者井川-->
 <!-- 勤怠記録画面(日間集計) -->
 <!-- 動的インクルードで読み込むことで画面遷移情報削減化 -->
+
+<!-- URLメモ -->
+<!-- https://atmarkit.itmedia.co.jp/ait/articles/0109/19/news002.html -->
 
 <!--jspテンプレ-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -76,7 +79,7 @@
             <td>例)8h</td>
             <td>例)0h</td>
             <td>
-                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
             </td>
 
 <!--             <td>
@@ -94,7 +97,7 @@
             <td>例)8h</td>
             <td>例)0h</td>
             <td>
-                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action">例)修正依頼承認</button>
@@ -111,7 +114,7 @@
             <td>例)8h</td>
             <td>例)0h</td>
             <td>
-                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action"></button>
@@ -128,7 +131,7 @@
             <td>例)8h</td>
             <td>例)1h</td>
             <td>
-                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action">例)ここには管理者から</button>
@@ -145,7 +148,7 @@
             <td>例)7h</td>
             <td>例)0h</td>
             <td>
-                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal05">打刻修正</button>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
             </td>
 <!--             <td>
                 <button class="comment_button action">修正依頼の返信が入ります</button>
@@ -156,52 +159,21 @@
     </tbody>
 </table>
 
-<!-- ここにmodalのアンカータグやボタンを置く -->
-    <div onload="pushed_Attendance()" class="content buttons">
-	<ul>
-		<li>
-		<!-- クリックでモーダル1を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal01">打刻修正</button><br>
-		</li>
 
-		<li>
-		<!-- クリックでモーダル2を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal02">退勤</button><br>
-		</li>
-
-    </ul>
-    </div>
-
-    <!-- ここで2行目に切り替える -->
-
-    <div onload="pushed_Attendance()" class="content buttons">
-	<ul>
-		<li>
-        <!-- クリックでモーダル3を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal03">休憩 入</button><br>
-		</li>
-
-		<li>
-		<!-- クリックでモーダル4を表示 -->
-        <button onclick="pushed_Attendance()" class="js-modal-open"  data-target="modal04">休憩 戻</button><br>
-		</li>
-
-    </ul>
-    </div>
 
 
 <!-- ここから下で非表示にしてあるモーダル内の表示を実装 -->
 
-    <div id="modal05" class="modal js-modal">
+    <div id="daywork_modal01" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
-<!-- <p>main内と通算して5つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
-<!-- 5つ目のモーダル内には打刻修正の画面が入ります -->
+<!-- <p>daywork内1つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
+<!-- 1つ目のモーダル内には打刻修正の画面が入ります -->
 
 <!-- 修正時間をFixServletに送るためのform -->
 <form action="/azps_kintai/MainServlet" method="post">
 <!-- テスト用form -->
-<!-- 		  <form action="main.jsp" method="get"> -->
+<!--  <form action="main.jsp" method="get"> -->
 <!-- テスト結果は以下の通りなので、きちんとform情報が送れている -->
 <!-- http://localhost:8080/azps_kintai/main.jsp?
 birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInStart=1000&breakOutEnd=1000&fixComment=000&fixValue= -->
@@ -277,9 +249,10 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 		</table>
 
 <!-- 修正申請ボタン -->
-	<div class="text_center">
+<div class="text_center">
 
-<button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal06">打刻修正を行う</button>
+<button onclick="pushed_Attendance()" class="js-modal-open register_button"
+  data-target="daywork_modal02">打刻修正を行う</button>
 
 <!--hidden属性でinput情報を name="fixValue"でサーブレット側に渡す -->
 <input type="hidden" name="fixValue" value="" ><br><br>
@@ -287,7 +260,8 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 <input class="register_button " type="submit" value="打刻修正を行う" ><br><br>
 <!-- サブミット後自動実行してモーダルウィンドウ開いてほしい(願望) -->
 <p onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal06"></p>
-	</div>
+
+</div>
 
 	</form>
 
@@ -295,11 +269,11 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
         </div><!--modal__inner-->
     </div><!--modal-->
 
-    <div id="modal06" class="modal js-modal">
+    <div id="daywork_modal02" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
-<!-- <p>main内と通算して6つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
-<!-- 6つ目のモーダル内には打刻修正の画面が入ります -->
+<!-- <p>daywork内2つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
+<!-- 2つ目のモーダル内には打刻修正の画面が入ります -->
 
 		        <h1>修正申請完了しました</h1>
 				<p></p>
@@ -314,42 +288,6 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
         </div><!--modal__inner-->
     </div><!--modal-->
 
-    <div id="modal03" class="modal js-modal">
-        <div class="modal__bg js-modal-close"></div>
-        <div class="modal__content">
-<!--             <p>3つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
-
-		        <h1 >休憩に入りました</h1>
-				<p>お疲れ様です。ゆっくり休息をとってください。</p>
- 				<p id="brealinDate1">Now Loading...</p>
-				<p id="breakinDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceBreakinValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceBreakinValueInput" type="hidden" name="outtimeValue" value="">
-
-            <button class="js-modal-close" >閉じる</button>
-        </div><!--modal__inner-->
-    </div><!--modal-->
-
-    <div id="modal04" class="modal js-modal">
-        <div class="modal__bg js-modal-close"></div>
-        <div class="modal__content">
-<!--             <p>4つ目モーダルウィンドウです。ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p> -->
-
-		        <h1 >休憩から復帰しました</h1>
-				<p>お疲れ様です。引き続き頑張りましょう！</p>
- 				<p id="breakoutDate1">Now Loading...</p>
-				<p id="breakoutDate2">Now Loading...</p>
-<!-- 				↓出勤Servlet用の時刻が送れているかテスト。あとでコメントアウトする -->
-				<p id="attendanceBreakoutValueInputtest">test Loading...</p>
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceBreakoutValueInput" type="hidden" name="outtimeValue" value="">
-
-            <button class="js-modal-close" >閉じる</button>
-        </div><!--modal__inner-->+
-    </div><!--modal-->
-</form>
 
 
 <!-- ここまでレスポンシブテーブル処理 -->

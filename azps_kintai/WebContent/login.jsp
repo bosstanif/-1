@@ -66,7 +66,7 @@
 <label>社員ID</label>
 </th>
 <td class="contact-body">
-<input class="form-text" type="text" name="emp_ID" list="data" size="52"
+<input class="form-text" type="text" name="emp_Id" list="data" size="52"
 pattern="^[0-9a-zA-Z]{6-20}$"
 maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 </td>

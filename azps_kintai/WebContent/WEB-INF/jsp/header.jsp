@@ -71,7 +71,7 @@ $(function(){
 
 <!-- ここから下がtrue時のhtml側の実行メソッド -->
 
-<li><a href="/azps_kintai/Login">
+<li><a href="/azps_kintai/LoginServlet">
 <span class="header_span_item1">ユーザーログイン</span></a></li>
 
 <!-- 変数未定義なので一度コメント -->
@@ -80,8 +80,7 @@ $(function(){
 
 <!-- ここから下がfalse時（ログインされてると判定)のhtml側の実行メソッド -->
 <li><a href="/azps_kintai/MainServlet">勤怠記録　</a></li>
-<li><a href="/azps_kintai/MyPageServlet">
-</a>
+<li>
 <p>
 ようこそ
 <!-- 変数未定義なので一度コメント -->
