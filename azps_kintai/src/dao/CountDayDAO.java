@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.AccountBeans;
+import model.FixDate;
 
 public class CountDayDAO {
 
@@ -46,7 +47,7 @@ public class CountDayDAO {
 		}
 	}
 
-	public List<AccountBeans> Select_AllTime(AccountBeans accountBeans/*,DAY_NUM = 値１ AND DAY_NUM =値２*/) {//労働情報のリスト化全件取得//日付の縛りがいる
+	public List<AccountBeans> Select_AllTime(AccountBeans accountBeans,FixDate fixDate) {//労働情報のリスト化全件取得//日付の縛りがいる
 
 		List<AccountBeans> workTime_List = new ArrayList<AccountBeans>();
 
@@ -58,14 +59,14 @@ public class CountDayDAO {
 			// SELECT文を準備
 			String sql = "SELECT DAY_NUM,DAYTIME,INTIME,OUTTIME,BREAKIN,BREAKOUT"
 					+ " FROM COUNTDAY WHERE EMP_ID = ? AND PASS = ?"
-					+ " AND DAY_NUM = 値１ AND DAY_NUM =値２";
+					+ " AND DAYTIME = ? AND DAY_NUMDAYTIME = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, accountBeans.getEmp_Id());
 			pStmt.setString(2, accountBeans.getPass());
-			pStmt.setInt(3, DAY_NUM = 値１);
-			pStmt.setInt(3, DAY_NUM = 値２);
+			pStmt.setString(3, fixDate.getFixStrat());
+			pStmt.setString(3, fixDate.getFixEnd());
 
 			// SELECT文を実行し、結果表を取得
 			ResultSet rs = pStmt.executeQuery();
