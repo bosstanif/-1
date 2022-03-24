@@ -5,6 +5,7 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +21,12 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
 		//繧ｻ繝�繧ｷ繝ｧ繝ｳ繧ｹ繧ｳ繝ｼ繝励�ｮ遐ｴ譽�
 		HttpSession session = request.getSession();
 		session.invalidate();
+		ServletContext application = this.getServletContext();
+		application.removeAttribute("login");
 
 		//繝ｭ繧ｰ繧､繝ｳ迥ｶ諷九′縺ｪ縺九▲縺溘→縺阪�ｯlogin.jsp縺九ｉ縺ｮ繧｢繧ｯ繧ｻ繧ｹ
 
