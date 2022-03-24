@@ -32,7 +32,7 @@ public class AccountBeans implements Serializable {
 
 	}
 
-    //AccountDAOやり取り用
+    //AccountDAO繧�繧雁叙繧顔畑
 	public AccountBeans(int account_Num, int master_Flag, String emp_Id, String name, String pass, int status,
 			String comment) {
 
@@ -44,7 +44,17 @@ public class AccountBeans implements Serializable {
 		this.status = status;
 		this.comment = comment;
 	}
-    //CountDayDAOやり取り用
+	
+    public AccountBeans(String dayTime, String inTime, String outTime, String breakIn, String breakOut) {
+		
+		this.dayTime = dayTime;
+		this.inTime = inTime;
+		this.outTime = outTime;
+		this.breakIn = breakIn;
+		this.breakOut = breakOut;
+	}
+
+	//CountDayDAO繧�繧雁叙繧顔畑
 	public AccountBeans( int dayNum, String dayTime, String inTime, String outTime, String breakIn, String breakOut) {
 
 

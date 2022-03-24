@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,15 +19,6 @@ import model.LoginLogic;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-//getメソッド
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// リクエストパラメータの取得
-	/*RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");*/
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-		dispatcher.forward(request, response);
-	}
-
 //postメソッド
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,33 +31,24 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		//LoginBeansからインスタンスを生成し、logic変数に代入、
-		Login logic = new Login(emp_Id, pass);
+		Login login = new Login(emp_Id, pass);
 		//その後logic変数をLoginLogic内から呼び出したLoginLogicメソッドにて照らし合わせる処理を行う。
 		LoginLogic bo = new LoginLogic();
 		//結果：要素文字列の完全一致でtrue判定ならば
-		AccountBeans loginAccount = bo.execute(logic);
-
+		AccountBeans loginAccount = bo.execute(login);
+		
 		// ログイン処理の成否によって処理を分岐
-	if (loginAccount != null) {// ログイン成功時、BeansModelからアカウント関連の変数をパスワードを除きすべて取得。
-		//getの後に続く変数名の1文字目は大文字にしなければならないことに注意
-		//本来はセキュリティ的にpassを未定義のコンストラクタをBeansModelに作る必要があると思うが今回は無視。
-		AccountBeans acc = new AccountBeans(loginAccount.getAccount_Num(),
-				loginAccount.getMaster_Flag(),
-				loginAccount.getEmp_Id(),
-				loginAccount.getName(),
-				loginAccount.getPass(),
-				loginAccount.getStatus(),
-				loginAccount.getComment());
-		// セッションスコープに保存されたユーザーメールを保存
-			HttpSession session = request.getSession();
-			session.setAttribute("loginAccount", acc);
-
+	if (loginAccount != null) {// ログイン成功時、BeansModelからアカウント関連の変数をパスワードを除きすべて取得。	
+		HttpSession session = request.getSession();
+			session.setAttribute("loginAccount", loginAccount);
+		ServletContext application = this.getServletContext();
+			application.setAttribute("login", login);
 //POST時のフォワード先
 /*	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");*/
 RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
 			dispatcher.forward(request, response);
 		} else {//ログイン失敗時
-			response.sendRedirect("/azps_kintai/LoginServlet");
+			response.sendRedirect("/azps_kintai/");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-/*最終更新03/23　更新者/井川*/
+/*譛�邨よ峩譁ｰ03/23縲�譖ｴ譁ｰ閠�/莠募ｷ�*/
 
 package servlet;
 
@@ -20,13 +20,13 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//セッションスコープの破棄
+		//繧ｻ繝�繧ｷ繝ｧ繝ｳ繧ｹ繧ｳ繝ｼ繝励�ｮ遐ｴ譽�
 		HttpSession session = request.getSession();
 		session.invalidate();
 
-		//ログイン状態がなかったときはlogin.jspからのアクセス
+		//繝ｭ繧ｰ繧､繝ｳ迥ｶ諷九′縺ｪ縺九▲縺溘→縺阪�ｯlogin.jsp縺九ｉ縺ｮ繧｢繧ｯ繧ｻ繧ｹ
 
-		//ログアウト画面にフォワード
+		//繝ｭ繧ｰ繧｢繧ｦ繝育判髱｢縺ｫ繝輔か繝ｯ繝ｼ繝�
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");/* */
 		dispatcher.forward(request, response);
 
