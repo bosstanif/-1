@@ -66,8 +66,9 @@
 <label>社員ID</label>
 </th>
 <td class="contact-body">
-<input class="form-text" type="text" name="empID" list="data"
-maxlength="10" placeholder="emp001" required>
+<input class="form-text" type="text" name="emp_ID" list="data" size="52"
+pattern="^[0-9a-zA-Z]{6-20}$"
+maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 </td>
 </tr>
 
@@ -75,7 +76,7 @@ maxlength="10" placeholder="emp001" required>
 <th class="contact-item">
 <label>パスワード</label></th>
 <td class="contact-body">
-<input class="form-text" type="password" name="pass"
+<input class="form-text" type="password" name="pass" size="52"
 pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" required>
 </td>
 </tr>
@@ -85,12 +86,18 @@ pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" re
 
 <input class="contact-submit"  type="submit" value="ログイン" />
 
+
+
+
 <!-- ユーザー新規登録 -->
 <%-- <a href="<%= request.getContextPath() %>/LogoutServlet"> --%>
 <!-- ユーザーレジスターサーブレットにgetで飛ばす -->
 <a href="/azps_kintai/UserRegister.java">
 </a>
 </form>
+
+
+
 
 
 </div>
