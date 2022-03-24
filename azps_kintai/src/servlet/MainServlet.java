@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.AccountDAO;
+import dao.CountDayDAO;
 import model.AccountBeans;
-
 
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
@@ -22,9 +22,8 @@ public class MainServlet extends HttpServlet {
 			throws ServletException, IOException {
 			HttpSession session = request.getSession();
 			AccountBeans loginAccount = (AccountBeans)session.getAttribute("logiAccount");
-		// UTF-8Œ`®‚ÅƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚Ìæ“¾
+		// UTF-8ï¿½`ï¿½ï¿½ï¿½Åƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Ìæ“¾
 				request.setCharacterEncoding("UTF-8");
-				
 				
 				String inTime = request.getParameter("inTimeValue");
 				String outTime = request.getParameter("outTimeValue");
@@ -32,27 +31,56 @@ public class MainServlet extends HttpServlet {
 				String breakOut= request.getParameter("breakoutTimeValue");
 				String dayTime= request.getParameter("inTimeValue");
 				
+				AccountDAO Adao = new AccountDAO();
+				CountDayDAO Cdao = new CountDayDAO();
+				
 				if(inTime!=null&&outTime==null&&breakIn==null&&breakOut==null) {
-				AccountDAO dao = new AccountDAO();
-				dao.Insert(loginAccount);
-				dao.Update_Status1(loginAccount);
+				Adao.Insert(loginAccount);
+				Adao.Update_Status1(loginAccount);
 				
 				loginAccount = new AccountBeans(dayTime, inTime, outTime, breakIn, breakOut);
 				
+				}else if(inTime!=null&&outTime==null&&breakIn!=null&&breakOut==null) {//ä¼‘æ†©å…¥ã‚Š
+					Adao.Update_Status3(loginAccount);
+				
+				}else if(inTime!=null&&outTime==null&&breakIn!=null&&breakOut!=null) {
+					Adao.Update_Status1(loginAccount);
+					
+ 				}else {//é€€å‹¤
+ 					Adao.Update_Status0(loginAccount);
+ 					
+ 				}
+				
+				Cdao.Update_ALL(loginAccount);
 				session.removeAttribute("loginAccount");
 				session.setAttribute("loginAccount", loginAccount);
 				
-				}else if(inTime!=null&&outTime==null&&breakIn!=null&&breakOut==null) {
-					
-					
-					
-					
-				}else if(inTime!=null&&outTime==null&&breakIn!=null&&breakOut!=null) {
- 				}else {mmm
+				String action =request.getParameter("æ‰“åˆ»ä¿®æ­£ã‚’è¡Œã†");
 				
+				if(action!=null) {
+					
+					AccountBeans fixAccount =new AccountBeans();
+					
+				 dayTime=request.getParameter("attendanceDay");
+				 fixAccount.setDayTime(dayTime);
+				 inTime =request.getParameter("inTimeStart");
+				 fixAccount.setInTime(inTime);
+				 outTime =request.getParameter("outTimeEnd");
+				 fixAccount.setOutTime(outTime);
+				 breakIn =request.getParameter("breakInStart");
+				 fixAccount.setBreakIn(breakIn);
+				 breakOut =request.getParameter("breakOutEnd");
+				 fixAccount.setBreakOut(breakOut);
+				 String comment =request.getParameter("fixComment");
+				 fixAccount.setComment(comment);
+				 String fixDate =request.getParameter("");//daywork.jsp-285.
+				 fixAccount.setFixDate(fixDate);
+				 
+				
+				
+				}
 			
-				
-		// ƒtƒHƒ[ƒh
+		// ï¿½tï¿½Hï¿½ï¿½ï¿½[ï¿½h
 		RequestDispatcher dispatcher =
 				request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
 		dispatcher.forward(request, response);

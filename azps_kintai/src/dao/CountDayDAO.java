@@ -100,8 +100,7 @@ public class CountDayDAO {
 
 			// SELECT文を準備
 			String sql = "UPDATE ACCOUNT SET INTIME = ?,OUTTIME = ?,BREAKIN =?,BREAKOUT = ?,FIX_DATE =?"
-					+ " WHERE EMP_ID = ? AND PASS = ? AND DAYTIME = ?"
-					+ " AND DAY_NUM = 値１ AND DAY_NUM =値２";
+					+ " WHERE EMP_ID = ? AND PASS = ? AND DAYTIME = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -113,8 +112,6 @@ public class CountDayDAO {
 			pStmt.setString(6, accountBeans.getEmp_Id());
 			pStmt.setString(7, accountBeans.getPass());
 			pStmt.setString(8, accountBeans.getDayTime());
-			pStmt.setInt(9, DAY_NUM = 値１);
-			pStmt.setInt(10, DAY_NUM = 値２);
 
 			// SELECT文を実行し、結果表を取得
 			pStmt.executeUpdate();

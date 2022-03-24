@@ -21,9 +21,6 @@ public class AccountBeans implements Serializable {
 	private String breakOut;
 	private String fixDate;
 
-	public void setFixDate(String fixDate) {
-		this.fixDate = fixDate;
-	}
 
 	@Override
 	public String toString() {
@@ -175,5 +172,8 @@ public class AccountBeans implements Serializable {
 	public void setBreakOut(String breakOut) {
 		this.breakOut = breakOut;
 	}
-
+	
+	public void setFixDate(String fixDate) {
+		this.fixDate = fixDate;
+	}
 }

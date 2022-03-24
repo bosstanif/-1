@@ -5,13 +5,13 @@ import java.util.List;
 
 public class CountdayBeans implements Serializable {
 
-	private int monthAllTime;//拘束時間
-	private int monthWorkTime;//実労働時間
-	private int numberOfMonth;//出勤数
+	private int /* date */ monthAllTime;//諡俶據譎る俣
+	private int monthWorkTime;//螳溷感蜒肴凾髢�
+	private int numberOfMonth;//蜃ｺ蜍､謨ｰ
 	int breakTimeOfMonth;
 
-	/*Int-String, String-DATE
-	String.valueof(),SimpleDateFormat.parse*/
+	//DATE-String
+	/*String-DATE SimpleDateFormat.parse*/
 
 	@Override
 	public String toString() {
@@ -21,15 +21,15 @@ public class CountdayBeans implements Serializable {
 
 	public void MonthCalc(List<AccountBeans> workTime_List) {
 
-		this.numberOfMonth = workTime_List.size();//出勤数　List内の件数
+		this.numberOfMonth = workTime_List.size();//蜃ｺ蜍､謨ｰ縲�List蜀�縺ｮ莉ｶ謨ｰ
 
 		for (AccountBeans work : workTime_List) {
 
-			this.monthAllTime += (Integer.parseInt(work.getInTime()) - Integer.parseInt(work.getOutTime()));//拘束時間　出勤から退勤まで
+			this.monthAllTime += (Integer.parseInt(work.getInTime()) - Integer.parseInt(work.getOutTime()));//諡俶據譎る俣縲�蜃ｺ蜍､縺九ｉ騾�蜍､縺ｾ縺ｧ
 			breakTimeOfMonth += (Integer.parseInt(work.getBreakIn()) - Integer.parseInt(work.getBreakOut()));
 		}
 
-		this.monthWorkTime = monthAllTime - breakTimeOfMonth;//実労働時間
+		this.monthWorkTime = monthAllTime - breakTimeOfMonth;//螳溷感蜒肴凾髢�
 
 	}
 
