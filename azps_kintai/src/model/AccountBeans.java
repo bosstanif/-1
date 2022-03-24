@@ -19,6 +19,11 @@ public class AccountBeans implements Serializable {
 	private String outTime;
 	private String breakIn;
 	private String breakOut;
+	private String fixDate;
+
+	public void setFixDate(String fixDate) {
+		this.fixDate = fixDate;
+	}
 
 	@Override
 	public String toString() {
