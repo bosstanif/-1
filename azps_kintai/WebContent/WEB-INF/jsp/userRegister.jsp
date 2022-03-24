@@ -24,19 +24,12 @@
 <!--ファビコンの読み込み。これをjsp毎のtitleタグの下に置く。-->
 <link rel="icon" type="image/png" href="images/favicon-16x16.png">
 
-
 <!-- 全ページで共通デザイン部分のstyle.cssの読み込み -->
 <link rel="stylesheet" href="css/style.css">
 
-<!-- ログインcss読み込み -->
-<link rel="stylesheet" href="css/login.css">
-
-<!--フォームcss読み込み -->
-<link rel="stylesheet" href="css/form.css">
 
 
 </head>
-
 
 <body class="text_center" >
 <!-- 全体を中央ぞろえにしたくない場合は↑のclass="text_center"を消してください-->
@@ -52,48 +45,13 @@
 <div id="footer_wrapper">
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-<!-- フォーム全体の画面の固定 -->
-<div class="contact">
+<!-- UserRegisterServletへ飛ばすテスト送信フォーム -->
+<form action="/azps_kintai/UserRegisterServlet" method="post">
+<input type=submit name="test送信" value="test">
 
-<h5 class="h1_login">勤怠管理システム<br>従業員ログイン画面</h5>
-
-<form action="/azps_kintai/LoginServlet" method="post">
-
-<table class="contact-table">
-<tbody>
-<tr>
-<th class="contact-item">
-<label>社員ID</label>
-</th>
-<td class="contact-body">
-<input class="form-text" type="text" name="empID" list="data"
-maxlength="10" placeholder="emp001" required>
-</td>
-</tr>
-
-<tr>
-<th class="contact-item">
-<label>パスワード</label></th>
-<td class="contact-body">
-<input class="form-text" type="password" name="pass"
-pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" required>
-</td>
-</tr>
-
-</tbody>
-</table>
-
-<input class="contact-submit"  type="submit" value="ログイン" />
-
-<!-- ユーザー新規登録 -->
-<%-- <a href="<%= request.getContextPath() %>/LogoutServlet"> --%>
-<!-- ユーザーレジスターサーブレットにgetで飛ばす -->
-<a href="/azps_kintai/UserRegister.java">
-</a>
+<!-- テスト：送信した後モーダルウィンドウを開く感じで -->
 </form>
 
-
-</div>
 <!-- フッターラッパー-の閉じdiv -->
 </div>
 <!-- フッターインクルードの読み込み -->
@@ -101,10 +59,7 @@ pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" re
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 <%--<%@ include file="/WEB-INF/jsp/footer.jsp" %> --%>
 
-<!-- ToDo
-管理者側オミットしたので、新規ユーザー登録機能の画面をつくる
-
- -->
+<!-- スクリプト読み込み -->
 
 </body>
 

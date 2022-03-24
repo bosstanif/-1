@@ -199,7 +199,7 @@
 <!-- 5つ目のモーダル内には打刻修正の画面が入ります -->
 
 <!-- 修正時間をFixServletに送るためのform -->
-<form action="/azps_kintai/FixServlet" method="post">
+<form action="/azps_kintai/MainServlet" method="post">
 <!-- テスト用form -->
 <!-- 		  <form action="main.jsp" method="get"> -->
 <!-- テスト結果は以下の通りなので、きちんとform情報が送れている -->
