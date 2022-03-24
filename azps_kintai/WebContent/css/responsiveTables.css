@@ -8,8 +8,7 @@
   display: block;
   width: 100%;/*ウィンドウサイズに対する横幅を指定*/
   margin: 1em 0;/*データテーブル全体の枠の外側余白を指定*/
-margin-left: auto;/*テーブル全体左側の余白を少しあける 右が機能してなくあまり意味ないのでautoに変更*/
-margin-right:auto;/*テーブル全体右側の余白を少しあける　現在機能してない様子なのでautoに変更*/
+
 }
 
 .dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
@@ -21,7 +20,7 @@ margin-right:auto;/*テーブル全体右側の余白を少しあける　現在
 }
 
 .dataTable tbody {/*tbody内の範囲に適用。列名以外*/
-  width: auto;/**/
+  width: auto;/*ここは関係なさそうレスポンシブ対応の要なのでauto以外はX*/
   position: relative;
   overflow-x: auto;
 }
@@ -78,7 +77,7 @@ margin-right:auto;/*テーブル全体右側の余白を少しあける　現在
   }
 
   .dataTable td, .dataTable th {
-    width: auto;
+    width: auto;/*これはテーブル内の行に対する横幅*/
   }
 
 }

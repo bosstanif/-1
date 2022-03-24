@@ -38,6 +38,13 @@
 <!-- モーダルウィンドウ.cssの読み込み -->
 <link rel="stylesheet" href="css/timecard.css">
 
+<!-- 登録フォーム.cssの読み込み-->
+<link rel="stylesheet" href="css/form.css">
+
+<!-- タイムピッカー.cssの読み込み-->
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.20/jquery.datetimepicker.css">
+<!-- <link rel="stylesheet" href="datetimepicker-master/build/jquery.datetimepicker.css"> -->
 
 </head>
 
@@ -172,77 +179,89 @@
 <!-- 1つ目のモーダル内には打刻修正の画面が入ります -->
 
 <!-- 修正時間をFixServletに送るためのform -->
-<form action="/azps_kintai/MainServlet" method="post">
+<!-- <form action="/azps_kintai/MainServlet" method="post"> -->
 <!-- テスト用form -->
-<!--  <form action="main.jsp" method="get"> -->
+  <form action="main.jsp" method="get">
 <!-- テスト結果は以下の通りなので、きちんとform情報が送れている -->
 <!-- http://localhost:8080/azps_kintai/main.jsp?
 birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInStart=1000&breakOutEnd=1000&fixComment=000&fixValue= -->
 
-			<table class="dataTable">
 
-		    <tr>
-		    <th>
-		        <b>打刻修正</b>
+
+				<h2><b>＜ 打刻修正 ＞</b></h2>
+			<table class="contact-table">
+
+
+			<tr>
+			<th class="contact-item">
+			<label>出勤日時</label>
 			</th>
-			<td>
-				<p></p>
+
+			<td class="contact-body">
+				<input class="res_timepicker form-text"  type="text" name="inTimeStart" autocomplete="off" placeholder="2022/01/01 09:00(過去一ヶ月から本日まで選択可能)"  >
 			</td>
 			</tr>
 
 
 			<tr>
-		    <th>
-		        <b>打刻年月日</b>
+			<th class="contact-item">
+			<label>退勤日時</label>
 			</th>
 
-			<td>
-				<input class="form-text" id="until-today" type="date" name="attendanceDay"
-				placeholder="2022年3月23日" required>
+			<td class="contact-body">
+				<input class="res_timepicker form-text"  type="text"   name="outTimeEnd" autocomplete="off" placeholder="2022/01/01 17:00(過去一ヶ月から本日まで選択可能)"  >
 			</td>
 			</tr>
 
 
+
 			<tr>
-		    <th>
-		        <b>出退勤時間</b>
+			<th class="contact-item">
+			<label>残業時間</label>
 			</th>
 
-			<td>
-				<input class="res_timepicker"  type="text" name="inTimeStart" placeholder="09:00"  required/>　～　
-				<input class="res_timepicker"  type="text"   name="outTimeEnd" placeholder="17:00"  required/>
-			</td>
-
-		    <th>
-		        <b>残業時間</b>
-			</th>
-			<td>
-				<input class="form-text" type="text" name="overTimeHours" maxlength="2"
-				pattern="[0-9]{1,2}" placeholder="0(数字のみ2桁まで)" required>
+			<td class="contact-body">
+				<input class="form-text hour_timepicker"  type="text" name="overTimeHours" maxlength="2" size="52" autocomplete="off"
+				pattern="[0-9]{1,2}" placeholder="00:00(数字のみ、最大12時間まで選択可能)" autocomplete="off">
 			</td>
 
 			</tr>
 
 
 			<tr>
-		    <th>
-		        <b>休憩時間</b>
+			<th class="contact-item">
+			<label>休憩入り日時</label>
 			</th>
 
-			<td>
-				<input class="res_timepicker"  type="text" name="breakInStart" placeholder="09:00"  required/>　～　
-				<input class="res_timepicker"  type="text"   name="breakOutEnd" placeholder="17:00"  required/>
+			<td class="contact-body">
+				<input class="res_timepicker form-text"  type="text" name="breakInStart" autocomplete="off" placeholder="2022/01/01 12:00(過去一ヶ月から本日まで選択可能)" size="52" >
 			</td>
 
 			</tr>
+
+
+			<tr>
+			<th class="contact-item">
+			<label>休憩戻り日時</label>
+			</th>
+
+			<td class="contact-body">
+				<input class="res_timepicker form-text"  type="text"   name="breakOutEnd" autocomplete="off"  placeholder="2022/01/01 13:00(過去一ヶ月から本日まで選択可能)" size="52" >
+			</td>
+
+			</tr>
+
 
     	<tr>
-		<th>
-		　　<label class="text_center">コメント</label>
-        </th>
-        <td class="contact-body">
+			<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+			<label>コメント</label>
+			</th>
+
+			<td class="contact-body">
 		<b>
-		<textarea class="form-text" name="fixComment" placeholder="修正時のコメントを入力して下さい。(必須：100文字まで)" cols="100" rows="7" title="修正時のコメントを入力" required></textarea>
+		<textarea class="form-text"  name="fixComment" placeholder="修正時のコメントを入力して下さい。(必須：100文字まで)
+		例)出勤を押し忘れたので、出勤時間のみ打刻修正しました。"
+		cols="100" rows="7" title="修正時のコメントを入力" required></textarea>
 		<br></b>
         </td>
         </tr>
@@ -250,19 +269,13 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 		</table>
 
 <!-- 修正申請ボタン -->
-<div class="text_center">
-
-<button onclick="pushed_Attendance()" class="js-modal-open register_button"
-  data-target="daywork_modal02">打刻修正を行う</button>
 
 <!--hidden属性でinput情報を name="fixValue"でサーブレット側に渡す -->
 <input type="hidden" name="fixValue" value="" ><br><br>
 <!-- モーダル関連を読み込むとsubmit属性(リクワイアードチェック)が機能しないので外しておく。 -->
 <input class="register_button " type="submit" value="打刻修正を行う" ><br><br>
 <!-- サブミット後自動実行してモーダルウィンドウ開いてほしい(願望) -->
-<p onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="modal06"></p>
-
-</div>
+<!-- <p onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">あああ</p> -->
 
 	</form>
 
@@ -311,6 +324,54 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 <!-- レスポンシブテーブルjsを読み込み -->
 <script type="text/javascript" src="js/responsiveTables.js"></script>
 
+<!-- 時間選択.jsを読み込み 導入がやや複雑なためwebから。そのため少しカクつく -->
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.20/build/jquery.datetimepicker.full.min.js"></script>
+
+<!-- ローカルに保存したデートタイムピッカー。パスが違うっぽい？ -->
+<!-- <script type="text/javascript" src="datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script> -->
+<!-- <script type="text/javascript" src="datetimepicker-master/build/jquery.datetimepicker.full.js"></script> -->
+
+
+<script>
+/*日本語化*/
+$.datetimepicker.setLocale('ja');
+
+/*全部入り(ただし重い)時間修正用表示*/
+$('.res_timepicker').datetimepicker({
+	step:1,                /*1分単位で表示*/
+	minDate:'-1970/01/31',  /*一ヶ月前まで日付入力可能*/
+	maxDate:'+1970/01/01',  /*今日分まで日付入力可能*/
+	defaultTime:'09:00',     /*デフォルトで選ばれている時間*/
+//	theme:'dark' //ダークモード。
+});
+
+/*年月日のみ修正用表示*/
+$('.day_timepicker').datetimepicker({
+	timepicker:false ,       /*時間機能をオフ*/
+	minDate:'-1970/01/31',  /*一ヶ月前まで日付入力可能*/
+	maxDate:'+1970/01/01',  /*今日分まで日付入力可能*/
+//	theme:'dark' //ダークモード。
+});
+
+/*時間のみ修正用表示*/
+$('.time_timepicker').datetimepicker({
+	datepicker:false ,       /*日付機能をオフ*/
+	step:1,                /*1分単位で表示*/
+	defaultTime:'09:00',     /*デフォルトで選ばれている時間*/
+//	theme:'dark' //ダークモード。
+});
+
+/*残業時間用表示その2*/
+$('.hour_timepicker').datetimepicker({
+	step:60,
+	datepicker:false ,       /*日付機能をオフ*/
+	defaultTime:'00:00',     /*デフォルトで選ばれている時間*/
+	maxTime:'13:00'          /*最大で選べる時間*/
+});
+
+</script>
 
 </body>
 

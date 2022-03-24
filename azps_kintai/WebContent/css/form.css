@@ -35,18 +35,20 @@
 .contact-item {/*左のテーブルの背景色など*/
     text-align: left;
     width: 35%;
-    background-color: #FAF8F5;
+  background: rgba(0, 191, 255, 0.14);/*薄めの青色を指定34の部分は色の濃さ*/
+/*     background-color: rgb(128, 255, 255); */
 }
 
 .contact-body {
     width: 70%;
 }
 
-.form-text {
+.form-text {/*input時の入力枠を表示*/
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(0, 0, 0);
+    background-color:white;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;

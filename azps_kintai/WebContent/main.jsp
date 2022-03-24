@@ -75,9 +75,9 @@
 		</li>
 
 		<li>
-  <form action="/azps_kintai/MainServlet" method="post">
+<!--   <form action="/azps_kintai/MainServlet" method="post"> -->
 <!-- 送信テスト用のフォームタグ -->
-<!-- <form action="main.jsp" method="get"> -->
+<form action="main.jsp" method="get">
 
 <!-- 			<p id="RealtimeClockArea4">test Loading...</p> -->
 <!--	↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作検証済み -->
@@ -270,6 +270,10 @@
 どちらかというと
 退勤、休憩入り、休憩戻りは出勤を押してからしか押せないでいいかも。。
 
+3/23やること
+モーダルウィンドウを特定イベントの後に実行したい。
+例えば、出勤サブミット後に変数1追加し出勤しました画面モーダルを表示、閉じたら変数を0に戻す、とか？
+--modelから勤怠状態も取得し、
 
 
 -->
