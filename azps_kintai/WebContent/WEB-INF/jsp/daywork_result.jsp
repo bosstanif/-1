@@ -365,12 +365,12 @@ $('.time_timepicker').datetimepicker({
 
 /*残業時間用表示その2*/
 $('.hour_timepicker').datetimepicker({
-	step:60,
+	step:5,                   /*残業時間は5分刻みで取得*/
 	datepicker:false ,       /*日付機能をオフ*/
-//	format:'H:i',            /*出力フォーマットを時間：分のみに変更*/
-	format:'H',            /*出力フォーマットを時間のみに変更*/
+	format:'H:i',            /*出力フォーマットを時間：分のみに変更*/
+//	format:'H',            /*出力フォーマットを時間のみに変更*/
 	defaultTime:'00:00',     /*デフォルトで選ばれている時間*/
-	maxTime:'13:00'          /*最大で選べる時間*/
+	maxTime:'12:01'          /*最大で選べる時間*/
 });
 
 </script>
