@@ -67,8 +67,8 @@
 </th>
 <td class="contact-body">
 <input class="form-text" type="text" name="emp_Id" list="data" size="52"
-pattern="^[0-9a-zA-Z]{6-20}$"
-maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
+pattern="^[0-9a-zA-Z]{2,20}$"
+maxlength="10" placeholder="emp001(半角英数2～10文字で入力)" required>
 </td>
 </tr>
 
