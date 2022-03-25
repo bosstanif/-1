@@ -367,6 +367,8 @@ $('.time_timepicker').datetimepicker({
 $('.hour_timepicker').datetimepicker({
 	step:60,
 	datepicker:false ,       /*日付機能をオフ*/
+//	format:'H:i',            /*出力フォーマットを時間：分のみに変更*/
+	format:'H',            /*出力フォーマットを時間のみに変更*/
 	defaultTime:'00:00',     /*デフォルトで選ばれている時間*/
 	maxTime:'13:00'          /*最大で選べる時間*/
 });
