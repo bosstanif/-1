@@ -123,13 +123,15 @@ div.buttons {
   cursor: pointer;
 } */
 
-.modal {
+
+/*こちらは単品用のモーダル*/
+.solomodal {
   display: none;/*ここが原因の可能性*/
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
-  height: 100%;
+  height: 100%;/*小さめの画面だと退勤日時とかまでで見切れて、上にスクロールできない100%でもautoでも*/
   width: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.5);
@@ -139,6 +141,7 @@ div.buttons {
   background-color: #f4f4f4;
   margin: 20% auto;
   width: 50%;
+  height:auto;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
   animation-name: modalopen;
   animation-duration: 1s;
