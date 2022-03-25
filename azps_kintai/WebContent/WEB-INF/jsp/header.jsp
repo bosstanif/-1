@@ -71,8 +71,13 @@ $(function(){
 
 <!-- ここから下がtrue時のhtml側の実行メソッド -->
 
-<li><a href="/azps_kintai/LoginServlet">
+<!-- ユーザログイン関連処理用のサーブレットへ飛ばす -->
+<li><a href="/azps_kintai/LoginServlet" title="ユーザーログインへ">
 <span class="header_span_item1">ユーザーログイン</span></a></li>
+
+<!-- 新規ユーザー登録用のサーブレットへ飛ばす -->
+<li><a href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ">
+<span class="header_span_item1">新規ユーザー登録</span></a></li>
 
 <!-- 変数未定義なので一度コメント -->
 
