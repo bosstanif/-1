@@ -79,7 +79,7 @@ $(function(){
 <% }else{%>
 
 <!-- ここから下がfalse時（ログインされてると判定)のhtml側の実行メソッド -->
-<li><a href="/azps_kintai/MainServlet">勤怠記録　</a></li>
+<!-- <li><a href="/azps_kintai/MainServlet">勤怠記録　</a></li> -->
 <li>
 <p>
 ようこそ
