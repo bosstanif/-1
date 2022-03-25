@@ -9,6 +9,15 @@
 <!--jspテンプレ-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--各種modelの読み込み欄 複数指定時,カンマ忘れないように。-->
+<!-- ここではヘッダー側で読み込んでいるのでモデルの指定は必要なし（）重複ローカル変数で500エラーになる -->
+<%-- <%@ page import="model.AccountBeans,model.CountdayBeans,java.util.List"%> --%>
+<%-- <%@ page import="model.AccountBeans"%> --%>
+
+<!-- セッションスコープから現在ログインしているユーザー情報を取得 -->
+<!-- ここでは既に同じ内容のものをヘッダー側で読み込んでいるのでこの変数定義の指定は必要なし（）重複ローカル変数で500エラーになる -->
+<%-- <%
+AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
+%> --%>
 
 
 <!DOCTYPE html>
