@@ -9,11 +9,42 @@ import java.sql.SQLException;
 import model.AccountBeans;
 import model.Login;
 
+
 public class AccountDAO {
 	private final String JDBC_URL = "jdbc:mysql://localhost:3306/"
 			+ "AZPS?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo";
 	private final String DB_USER = "root";
 	private final String DB_PASS = "root";
+
+
+
+	/* ユーザー登録 追加分*/
+	public boolean findByCheck(AccountBeans accountBeans) {/*㉖*/
+		// データベースへ接続
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SELECT文を準備
+			String sql = "SELECT ACCOUNT_NUM,MASTER_FLAG,EMP_ID,NAME,PASS,STATUS,COMMENT"
+					+ " FROM ACCOUNT WHERE EMP_ID = ? AND PASS = ?";/* SQL文は小文字で入力してもOK */
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			//ここでは一意の情報を探ればよい。
+			pStmt.setString(1, accountBeans.getEmp_Id());
+
+			// SELECTを実行し、結果表を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 一致したユーザーが存在した場合（登録済みのID）、trueを返す
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		// ユーザーが見つからなかったら（未登録のID）、falseを返す
+		return false;
+	}
+
 
 	public AccountBeans Select_All(Login login) {//ログイン本人確認
 

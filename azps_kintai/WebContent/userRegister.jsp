@@ -1,4 +1,4 @@
-<!-- 最終更新日時0324 -->
+<!-- 最終更新日時0325 -->
 <!-- 作成者井川-->
 
 <!--jspテンプレ-->
@@ -85,7 +85,7 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 </th>
 
 <td class="contact-body">
-<input class="form-text" type="text" name="empID" list="data"
+<input class="form-text" type="text" name="emp_Id" list="data"
 pattern="^[0-9a-zA-Z]{6-10}$" size="52" autocomplete="off"
 maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 
@@ -122,6 +122,9 @@ placeholder="アズール プラス(苗字との間に半角スペースを入�
 
 
 </table>
+<!-- <a class="register_button margin_80px_right" type="submit" href="/azps_kintai/UserRegisterServlet?action=null" title="確認画面へ進む">確認画面へ</a> -->
+<input class="register_button"  type="submit" title="確認画面へ進む" value="確認画面へ" />
+
 	</form>
 
 <!-- テスト：送信した後モーダルウィンドウを開く感じで -->
@@ -129,8 +132,9 @@ placeholder="アズール プラス(苗字との間に半角スペースを入�
 
 <!-- hiddenでインプット、クッキーに保存が必要かも -->
 <!-- 参考URL https://teratail.com/questions/53352　-->
-<button onclick="pushed_Attendance()" name="確認画面へ"
-class="js-modal-open register_button"  data-target="register_modal01">確認画面へ</button>
+
+
+
 
 <!-- <input class="contact-submit"  type="submit" value="新規登録" /> -->
 
@@ -238,20 +242,6 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
 
 </div>
 
-<input type="text" id="message">
-<button>これはテストですよ押してみてね</button>
-
-
-<input id="btn" type="button" value="ボタン">
-
-
-
-
-<script>
-
-
-
-</script>
 
 <!-- フッターラッパー-の閉じdiv -->
 </div>
@@ -260,7 +250,7 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 <%--<%@ include file="/WEB-INF/jsp/footer.jsp" %> --%>
 
-<!-- スクリプト読み込み -->
+<!-- スクリプト読み込み -->,
 
 <!-- ユーザー新規登録確認押下後モーダルウィンドウ用jsを読み込み -->
 <script type="text/javascript" src="js/modalWindow.js"></script>
@@ -268,8 +258,8 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
 <!-- レスポンシブテーブルjsを読み込み -->
 <script type="text/javascript" src="js/responsiveTables.js"></script>
 
-<!-- グローバル変数jsを読み込み -->
-<script type="text/javascript" src="js/globalConst.js"></script>
+<!-- <!-- グローバル変数jsを読み込み -->
+<!-- <script type="text/javascript" src="js/globalConst.js"></script> -->
 
 </body>
 

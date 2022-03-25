@@ -1,4 +1,4 @@
-<!-- 最終更新日時0324 -->
+<!-- 最終更新日時0325 -->
 <!-- 作成者井川-->
 
 <!--jspテンプレ-->
@@ -41,7 +41,9 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 <!-- モーダルウィンドウ.cssの読み込み -->
 <link rel="stylesheet" href="css/timecard.css">
 
-<!-- 登録フォーム.cssの読み込み。家帰ってから追加 -->
+<!-- 登録フォーム.cssの読み込み-->
+<link rel="stylesheet" href="css/form.css">
+
 
 
 </head>
@@ -60,12 +62,13 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 <div id="footer_wrapper">
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-
-<h2>新規ユーザー登録</h2>
+<div class="contact">
+	<h2 class="contact-ttl">新規ユーザー登録</h2>
 
 <!-- モーダルのフォームタグを全体を包むように置いてみるテスト１ -->
 <!-- UserRegisterServletへ飛ばすテスト送信フォーム -->
-<form action="/azps_kintai/UserRegisterServlet" method="post">
+<form action="/azps_kintai/UserRegisterServlet?action=done" method="post">
+<!-- <form action="/azps_kintai/UserRegisterServlet" method="post"> -->
 <!-- <input type=submit name="test送信" value="test"> -->
 
 <!-- ここからテーブル作成開始 -->
@@ -74,14 +77,16 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 
 
 <!-- モーダル用データテーブルクラス読み込み -->
-<table class="dataTable">
+<table class="contact-table">
 
 <tr>
-<th>必須：社員ID</th>
+<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+<label>社員ID</label>
+</th>
 
-<td>
-<input class="form-text" type="text" name="empID" list="data"
-pattern="^[0-9a-zA-Z]{6-10}$" size="52"
+<td class="contact-body">
+<input class="form-text" type="text" name="emp_Id" list="data"
+pattern="^[0-9a-zA-Z]{6-10}$" size="52" autocomplete="off"
 maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 
 </td>
@@ -90,10 +95,12 @@ maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 
 
 <tr>
-<th>必須：パスワード</th>
+<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+<label>パスワード</label>
+</th>
 
-<td>
-<input type="password" name="pass" size="52"
+<td class="contact-body">
+<input class="form-text" type="password" name="pass" size="52"
 pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" required>
 
 </td>
@@ -101,11 +108,13 @@ pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" re
 </tr>
 
 <tr>
-<th>必須：従業員名</th>
+<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+<label>従業員名</label>
+</th>
 
-<td>
-<input type="text" name="userName" size="52"
-placeholder="堀江 貴文(苗字との間に半角スペースを入れてください)" required>
+<td class="contact-body">
+<input class="form-text" type="text" name="userName" size="52" autocomplete="off"
+placeholder="アズール プラス(苗字との間に半角スペースを入れてください)" required>
 
 </td>
 
@@ -113,15 +122,19 @@ placeholder="堀江 貴文(苗字との間に半角スペースを入れてく�
 
 
 </table>
+<!-- <a class="register_button margin_80px_right" type="submit" href="/azps_kintai/UserRegisterServlet?action=null" title="確認画面へ進む">確認画面へ</a> -->
+<input class="register_button"  type="submit" title="確認画面へ進む" value="確認画面へ" />
 
+	</form>
 
 <!-- テスト：送信した後モーダルウィンドウを開く感じで -->
 <!-- 新規登録確認ボタン -->
 
 <!-- hiddenでインプット、クッキーに保存が必要かも -->
 <!-- 参考URL https://teratail.com/questions/53352　-->
-<button onclick="pushed_Attendance()" name="確認画面へ"
-class="js-modal-open register_button"  data-target="register_modal01">確認画面へ</button>
+
+
+
 
 <!-- <input class="contact-submit"  type="submit" value="新規登録" /> -->
 
@@ -143,75 +156,53 @@ class="js-modal-open register_button"  data-target="register_modal01">確認画�
 <!-- http://localhost:8080/azps_kintai/main.jsp?
 birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInStart=1000&breakOutEnd=1000&fixComment=000&fixValue= -->
 
-			<table class="dataTable">
+<!-- モーダル用データテーブルクラス読み込み -->
+<table class="contact-table">
 
-		    <tr>
-		    <th>
-		        <b>打刻修正</b>
-			</th>
-			<td>
-				<p></p>
-			</td>
-			</tr>
+<tr>
+<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+<label>社員ID</label>
+</th>
 
+<td class="contact-body">
+<input class="form-text" type="text" name="empID" list="data" autocomplete="off"
+pattern="^[0-9a-zA-Z]{6-10}$" size="52"
+maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 
-			<tr>
-		    <th>
-		        <b>打刻年月日</b>
-			</th>
+</td>
 
-			<td>
-				<input class="form-text" id="until-today" type="date" name="attendanceDay"
-				placeholder="2022年3月23日" required>
-			</td>
-			</tr>
+</tr>
 
 
-			<tr>
-		    <th>
-		        <b>出退勤時間</b>
-			</th>
+<tr>
+<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+<label>パスワード</label>
+</th>
 
-			<td>
-				<input class="res_timepicker"  type="text" name="inTimeStart" placeholder="09:00"  required/>　～　
-				<input class="res_timepicker"  type="text"   name="outTimeEnd" placeholder="17:00"  required/>
-			</td>
+<td class="contact-body">
+<input class="form-text" type="password" name="pass" size="52"
+pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" required>
 
-		    <th>
-		        <b>残業時間</b>
-			</th>
-			<td>
-				<input class="form-text" type="text" name="overTimeHours" maxlength="2"
-				pattern="[0-9]{1,2}" placeholder="0(数字のみ2桁まで)" required>
-			</td>
+</td>
 
-			</tr>
+</tr>
+
+<tr>
+<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
+<label>従業員名</label>
+</th>
+
+<td class="contact-body">
+<input class="form-text" type="text" name="userName" size="52" autocomplete="off"
+placeholder="堀江 貴文(苗字との間に半角スペースを入れてください)" required>
+
+</td>
+
+</tr>
 
 
-			<tr>
-		    <th>
-		        <b>休憩時間</b>
-			</th>
+</table>
 
-			<td>
-				<input class="res_timepicker"  type="text" name="breakInStart" placeholder="09:00"  required/>　～　
-				<input class="res_timepicker"  type="text"   name="breakOutEnd" placeholder="17:00"  required/>
-			</td>
-
-			</tr>
-
-    	<tr>
-		<th>
-		　　<label class="text_center">コメント</label>
-        </th>
-        <td class="contact-body">
-		<b>
-		<textarea class="form-text" name="fixComment" placeholder="修正時のコメントを入力して下さい。(必須：100文字まで)" cols="100" rows="7" title="修正時のコメントを入力" required></textarea>
-		<br></b>
-        </td>
-        </tr>
-
-		</table>
 <!-- 		submit属性でデータ送信ボタン作ってみる -->
 <button onclick="pushed_Attendance()" name="この内容でユーザー登録する" type="submit"
 class="js-modal-open register_button"  data-target="register_modal02">この内容でユーザー登録する</button>
@@ -248,7 +239,8 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
         </div><!--modal__inner-->
     </div><!--modal-->
 
-	</form>
+
+</div>
 
 
 <!-- フッターラッパー-の閉じdiv -->
@@ -258,7 +250,7 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 <%--<%@ include file="/WEB-INF/jsp/footer.jsp" %> --%>
 
-<!-- スクリプト読み込み -->
+<!-- スクリプト読み込み -->,
 
 <!-- ユーザー新規登録確認押下後モーダルウィンドウ用jsを読み込み -->
 <script type="text/javascript" src="js/modalWindow.js"></script>
@@ -266,6 +258,8 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
 <!-- レスポンシブテーブルjsを読み込み -->
 <script type="text/javascript" src="js/responsiveTables.js"></script>
 
+<!-- <!-- グローバル変数jsを読み込み -->
+<!-- <script type="text/javascript" src="js/globalConst.js"></script> -->
 
 </body>
 

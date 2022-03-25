@@ -79,6 +79,10 @@ $(function(){
 <li><a href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ">
 <span class="header_span_item1">新規ユーザー登録</span></a></li>
 
+<!-- テスト用のデバッグサーブレットへ飛ばす -->
+<!-- <li><a href="/azps_kintai/UserRegisterServletTest" title="新規ユーザー登録へ">
+<span class="header_span_item1">デバッグサーブレットへ</span></a></li> -->
+
 <!-- 変数未定義なので一度コメント -->
 
 <% }else{%>

@@ -197,7 +197,7 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 
 
 
-				<h2><b>＜ 打刻修正 ＞</b></h2>
+			<h2><b>＜ 打刻修正 ＞</b></h2>
 			<table class="contact-table">
 
 

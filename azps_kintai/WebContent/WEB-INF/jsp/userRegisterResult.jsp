@@ -17,7 +17,7 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 <!-- ここから下はヘッド。表示されない情報の部分のみ書く -->
 <head>
 <meta charset="UTF-8">
-<title>ユーザー登録確認画面</title>
+<title>ユーザー登録完了画面</title>
 
 <!-- CSS読み込み-->
 <!--リセットcssの読み込み。！一部表示が崩れる場合を除き必須！ -->
@@ -58,97 +58,18 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 <div id="footer_wrapper">
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-<!-- if判定でエラーメッセージがあればそれを表示。 -->
 
-<!-- このif文が正常に機能していない -->
-<%
-if (errorMsg.length() != 0) {
-%>
-<h1 class="h1_u_reg_ng text_center">入力エラー</h1>
+<h2 class="h1_u_reg_result text_center">ユーザー登録完了</h2>
 
-<div class="div_u_reg_ng text_center">
-	<b >--<%=errorMsg%>--<br>再度情報を入力してください。
-	</b><br>
+<div class="div_u_reg_result text_center">
+	<h4 >
+		 　ユーザー登録を完了しました。
+	</h4>
 	<br>
-	<!-- ユーザーレジスターサーブレットを介し新規登録画面へ戻る処理 -->
-	<a class="register_button" href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ戻る">戻る</a>
+	<br>
+<!-- 	ログインサーブレット経由でログイン画面へ飛ぶ -->
+	<a class="register_button" href="/azps_kintai/LoginServlet" title="ユーザーログインへ" >ログイン画面へ</a>
 </div>
-
-<%
-}
-%>
-
-<!-- もしエラーメッセージが何もなければ以下の処理を実行 -->
-<%
-if (errorMsg == null || errorMsg.length() == 0) {
-%>
-
-<!-- ここから下は登録情報の確認が促される画面。 -->
-
-<table class="contact-table">
-
-<tr>
-<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
-<label>社員ID</label>
-</th>
-
-<td class="contact-body">
-<b><%=registerAccount.getEmp_Id()%></b>
-
-</td>
-
-</tr>
-
-
-<tr>
-<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
-<label>パスワード</label>
-</th>
-
-<td class="contact-body">
-<b><%=registerAccount.getPass()%></b>
-
-</td>
-
-</tr>
-
-<tr>
-<th class="contact-item"><span class="Form-Item-Label-Required text_right">*必須</span>
-<label>従業員名</label>
-</th>
-
-<td class="contact-body">
-<b><%=registerAccount.getName()%></b>
-
-</td>
-
-</tr>
-
-
-</table>
-
-
-<!-- if文の終わり -->
-	<%
-	}
-	%>
-
-	<div class="text_center">
-	<h3>この内容でユーザー登録してよろしいですか？</h3>
-	<br><br>
-
-	<!-- はいの場合、モーダルポップアップで入力完了処理、しようかと思ったがaction=done飛ばす必要があるため断念。結果ページへ進む -->
-<!--     <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="userRegisterChecke_modal01">はい</button> -->
- 	<a class="register_button margin_80px_right"  href="/azps_kintai/UserRegisterServlet?action=done" title="新規ユーザー登録する">はい</a>
-
-	<!-- いいえの場合 -->
- 	<a class="register_button"  href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ戻る">いいえ</a>
-
-	</div>
-<!-- UserRegisterServletへ飛ばすテスト送信フォーム -->
-<!-- <form action="/azps_kintai/UserRegisterServlet" method="post"> -->
-<!-- <input type=submit name="test送信" value="test"> -->
-<!-- </form> -->
 
 <!-- フッターラッパー-の閉じdiv -->
 </div>
