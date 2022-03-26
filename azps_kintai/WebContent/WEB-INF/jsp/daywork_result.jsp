@@ -78,8 +78,8 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-<!-- ヘッダー側でモデル読み込んでいるのでちゃんと読み込めるよ -->
-<h1><%=loginAccount.getName() %>さんの勤怠記録表：日毎集計</h1>
+<!-- 呼び出し元を静的インクルで読み込んでやればヘッダーでセッションを、モデルをここで読み込んでいるのでちゃんと読み込める -->
+<h1><%=loginAccount.getName() %> さんの勤怠記録表：日毎集計</h1>
 
 
 <!-- ここからレスポンシブテーブル処理 -->
@@ -222,7 +222,11 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 			</th>
 
 			<td class="contact-body">
-				<input class="res_timepicker form-text"  type="text" name="inTimeStart" autocomplete="off" placeholder="2022/01/01 09:00(過去一ヶ月から本日まで選択可能)"  >
+				<!-- 何年/何月/何日/何時：何分部分の正規表現などは無くてもdatetimepicker側でやってくれる -->
+				<input class="res_timepicker form-text"  type="text" name="inTimeStart" autocomplete="off"
+				title="例)2022/01/01 09:00(過去一ヶ月から本日まで選択可能)"
+				pattern="^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3 [01[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]])$"
+				placeholder="2022/01/01 09:00(過去一ヶ月から本日まで選択可能)"  >
 			</td>
 			</tr>
 
@@ -233,7 +237,9 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 			</th>
 
 			<td class="contact-body">
-				<input class="res_timepicker form-text"  type="text"   name="outTimeEnd" autocomplete="off" placeholder="2022/01/01 17:00(過去一ヶ月から本日まで選択可能)"  >
+				<input class="res_timepicker form-text"  type="text"   name="outTimeEnd" autocomplete="off"
+				title="例)2022/01/01 17:00(過去一ヶ月から本日まで選択可能)"
+				placeholder="2022/01/01 17:00(過去一ヶ月から本日まで選択可能)"  >
 			</td>
 			</tr>
 
@@ -245,8 +251,12 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 			</th>
 
 			<td class="contact-body">
-				<input class="form-text hour_timepicker"  type="text" name="overTimeHours" maxlength="2" size="52" autocomplete="off"
-				pattern="[0-9]{1,2}" placeholder="00:00(数字のみ、最大12時間まで選択可能)" autocomplete="off">
+				<!-- 何時：何分部分の正規表現など -->
+				<input class="form-text hour_timepicker"  type="text" name="overTimeHours" maxlength="2"
+				size="52" autocomplete="off"
+				title="例)00:00(数字のみ、最大12時間まで選択可能)"
+				pattern="[01][0-9]|2[0-3]):[0-5][0-9]{1,5}"
+				placeholder="00:00(数字のみ、最大12時間まで選択可能)" autocomplete="off">
 			</td>
 
 			</tr>
@@ -258,7 +268,9 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 			</th>
 
 			<td class="contact-body">
-				<input class="res_timepicker form-text"  type="text" name="breakInStart" autocomplete="off" placeholder="2022/01/01 12:00(過去一ヶ月から本日まで選択可能)" size="52" >
+				<input class="res_timepicker form-text"  type="text" name="breakInStart" autocomplete="off"
+				title="例)2022/01/01 12:00(過去一ヶ月から本日まで選択可能)"
+				placeholder="2022/01/01 12:00(過去一ヶ月から本日まで選択可能)" size="52" >
 			</td>
 
 			</tr>
@@ -270,7 +282,9 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 			</th>
 
 			<td class="contact-body">
-				<input class="res_timepicker form-text"  type="text"   name="breakOutEnd" autocomplete="off"  placeholder="2022/01/01 13:00(過去一ヶ月から本日まで選択可能)" size="52" >
+				<input class="res_timepicker form-text"  type="text"   name="breakOutEnd" autocomplete="off"
+				title="例)2022/01/01 13:00(過去一ヶ月から本日まで選択可能)"
+				placeholder="2022/01/01 13:00(過去一ヶ月から本日まで選択可能)" size="52" >
 			</td>
 
 			</tr>
@@ -283,7 +297,10 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 
 			<td class="contact-body">
 		<b>
-		<textarea class="form-text"  name="fixComment" placeholder="修正時のコメントを入力して下さい。(必須：100文字まで)
+		<textarea class="form-text"  name="fixComment"
+		title="例)修正時のコメントを入力して下さい。(必須：100文字まで)
+		例)出勤を押し忘れたので、出勤時間のみ打刻修正しました。"
+		placeholder="修正時のコメントを入力して下さい。(必須：100文字まで)
 		例)出勤を押し忘れたので、出勤時間のみ打刻修正しました。"
 		cols="100" rows="7" title="修正時のコメントを入力" required></textarea>
 		<br></b>
