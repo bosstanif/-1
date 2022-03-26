@@ -45,10 +45,12 @@ public class AccountDAO {
 		return false;
 	}
 
-
+	//findByLoginにあたるメソッド
 	public AccountBeans Select_All(Login login) {//ログイン本人確認
 
 		AccountBeans accountBeans = null;
+		//変数accountを定義、null格納。
+//		AccountBeans account = null;
 
 		// データベースへ接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
@@ -76,16 +78,19 @@ public class AccountDAO {
 				String comment = rs.getString("COMMENT");
 
 				accountBeans = new AccountBeans(account_Num, muster_Flag, emp_Id, name, pass, status, comment);
+//				account = new AccountBeans(account_Num, muster_Flag, emp_Id, name, pass, status, comment);
 			}
 
 			return accountBeans;
+//			return account;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
-			return null;//AccountBeansにnull格納
+			return null;//accountBeansにnull格納
 		}
-
+		// 見つかったユーザーまたはnullを返す
+//		return account;
 	}
 
 	public AccountBeans Select_All(AccountBeans accountBeans) {//自身のデータ閲覧
@@ -260,6 +265,7 @@ public class AccountDAO {
 
 	}
 
+	//もしユーザー作成するとなったときはこのメソッドを呼び出す。
 	public void Insert(AccountBeans accountBeans) {
 		// データベースへ接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {

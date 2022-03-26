@@ -56,13 +56,17 @@ public class LoginServlet extends HttpServlet {
 		//要素の完全一致でtrue判定する処理メソッドを呼び出す。
 		//引数には↑↑で実行したLogin.javaインスタンスを代入した変数を指定して変数accountに代入。
 		AccountBeans account = bo.execute(login);
+//		boolean result = bo.execute(login);
 
 		//↑で設定した変数accountでは一致しなければnullのままなので。
 		// nullじゃないかどうかでログイン処理の成否によって処理を分岐
-	if (account != null) {
+		if (account != null) {
+//		if(result) {
 		// ログイン成功時、DBに登録済みのDAOを通してAccontBeansModelから定義済みのアカウント関連の引数有りコンストラクタ変数をパスワードを除きすべて取得。
 		//これは完全に一緒じゃなければならない。
+//			//↓DAO側で生成するように処理変更したのでなし。
 		AccountBeans accountBeansInstance = new AccountBeans(account.getAccount_Num(),account.getMaster_Flag(),account.getEmp_Id(), account.getName(), account.getPass(),account.getStatus(),account.getComment());
+//		AccountBeans accountBeansInstance = new AccountBeans(account.getAccount_Num(),account.getMaster_Flag(),account.getEmp_Id(), account.getName(), account.getPass(),account.getStatus(),account.getComment());
 		//セッションスコープに保存されたユニーク（一意であり重複しない）属性のものを変数sessionに代入。
 		HttpSession session = request.getSession();
 
@@ -73,6 +77,7 @@ public class LoginServlet extends HttpServlet {
 		//セッションスコープに、loginAccount変数と,↑で設定したaccountBeansInstance変数をセット
 		//結果としてDAOからの情報をログインアカウントに持たせる。
 		session.setAttribute("loginAccount", accountBeansInstance);
+//		session.setAttribute("emp_Id",emp_Id);
 
 		//さらに、個々人ごとの勤務記録も本来はこのログイン認証OKのタイミングで行う。（あとで追加を行う）
 

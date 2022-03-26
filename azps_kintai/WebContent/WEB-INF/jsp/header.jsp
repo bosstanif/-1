@@ -14,6 +14,10 @@
 AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 %>
 
+<%-- <%
+AccountBeans loginAccount = (AccountBeans) session.getAttribute("emp_Id");
+%> --%>
+
 
 <!-- ヘッダーCSSを読み込み -->
 <link rel="stylesheet" href="css/header.css">
