@@ -7,7 +7,9 @@
 <!-- https://atmarkit.itmedia.co.jp/ait/articles/0109/19/news002.html -->
 
 <!--jspテンプレ-->
+<%@page import="model.AccountBeans"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!--各種modelの読み込み欄 複数指定時,カンマ忘れないように。-->
 <!-- ここではヘッダー側で読み込んでいるのでモデルの指定は必要なし（）重複ローカル変数で500エラーになる -->
 <%-- <%@ page import="model.AccountBeans,model.CountdayBeans,java.util.List"%> --%>
@@ -15,9 +17,22 @@
 
 <!-- セッションスコープから現在ログインしているユーザー情報を取得 -->
 <!-- ここでは既に同じ内容のものをヘッダー側で読み込んでいるのでこの変数定義の指定は必要なし（）重複ローカル変数で500エラーになる -->
+
 <%-- <%
 AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 %> --%>
+
+
+<%@ page import="model.CountdayBeans,java.util.List"%>
+
+<%
+//セッションスコープからユーザー情報を取得
+//CountdayBeans loginAccount = (CountdayBeans) session.getAttribute("loginAccount");*/
+
+//List<Restaurant> resList = (List<Restaurant>) session.getAttribute("resList");
+
+//String errorMsg = (String) session.getAttribute("errorMsg");
+%>
 
 
 <!DOCTYPE html>
@@ -63,8 +78,8 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-
-<h1>例)名無しさんの勤怠記録表：日毎集計</h1>
+<!-- ヘッダー側でモデル読み込んでいるのでちゃんと読み込めるよ -->
+<h1><%=loginAccount.getName() %>さんの勤怠記録表：日毎集計</h1>
 
 
 <!-- ここからレスポンシブテーブル処理 -->

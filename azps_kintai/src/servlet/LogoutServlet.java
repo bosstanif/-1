@@ -21,16 +21,19 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-		//繧ｻ繝�繧ｷ繝ｧ繝ｳ繧ｹ繧ｳ繝ｼ繝励�ｮ遐ｴ譽�
+
+		//セッションスコープに保存された情報を sessionに代入
 		HttpSession session = request.getSession();
+		//invalidateメソッドを使い、セッションスコープを破棄する。
 		session.invalidate();
+		//アプリケーションスコープに保存された情報を applicationに代入
 		ServletContext application = this.getServletContext();
+		//removeAttributeメソッドを使い、引数に変数"login"を指定しアプリケーションスコープから破棄する。
 		application.removeAttribute("login");
 
 		//繝ｭ繧ｰ繧､繝ｳ迥ｶ諷九′縺ｪ縺九▲縺溘→縺阪�ｯlogin.jsp縺九ｉ縺ｮ繧｢繧ｯ繧ｻ繧ｹ
 
-		//繝ｭ繧ｰ繧｢繧ｦ繝育判髱｢縺ｫ繝輔か繝ｯ繝ｼ繝�
+		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");/* */
 		dispatcher.forward(request, response);
 
