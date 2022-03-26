@@ -93,7 +93,6 @@ $(function(){
 <p>
 ようこそ
 <!-- 変数未定義なので一度コメント -->
-<%-- <%=loginAccount.getUserNickname()%> --%>
 <%=loginAccount.getName() %>
 さん　
 </p>

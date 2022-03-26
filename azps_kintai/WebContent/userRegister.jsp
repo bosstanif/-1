@@ -67,7 +67,7 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 
 <!-- モーダルのフォームタグを全体を包むように置いてみるテスト１ -->
 <!-- UserRegisterServletへ飛ばすテスト送信フォーム -->
-<form action="/azps_kintai/UserRegisterServlet?action=done" method="post">
+<form action="/azps_kintai/UserRegisterServlet" method="post">
 <!-- <form action="/azps_kintai/UserRegisterServlet" method="post"> -->
 <!-- <input type=submit name="test送信" value="test"> -->
 
@@ -86,7 +86,7 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 
 <td class="contact-body">
 <input class="form-text" type="text" name="emp_Id" list="data"
-pattern="^[0-9a-zA-Z]{6-10}$" size="52" autocomplete="off"
+pattern="^[0-9a-zA-Z]{6,10}$" size="52" autocomplete="off" title="emp001(半角英数6～10文字で入力)"
 maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 
 </td>
@@ -100,8 +100,8 @@ maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 </th>
 
 <td class="contact-body">
-<input class="form-text" type="password" name="pass" size="52"
-pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" required>
+<input class="form-text" type="password" name="pass" size="52" title="半角英数6～20文字で入力"
+pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" required>
 
 </td>
 
@@ -114,7 +114,8 @@ pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" re
 
 <td class="contact-body">
 <input class="form-text" type="text" name="userName" size="52" autocomplete="off"
-placeholder="アズール プラス(苗字との間に半角スペースを入れてください)" required>
+pattern="^[^0-9]{2,20}$" title="アズール プラス:2文字以上:数字以外(苗字との間に半角スペースを入れてください)"
+placeholder="アズール プラス:2文字以上:数字以外(苗字との間に半角スペースを入れてください)" required>
 
 </td>
 
@@ -125,15 +126,17 @@ placeholder="アズール プラス(苗字との間に半角スペースを入�
 <!-- <a class="register_button margin_80px_right" type="submit" href="/azps_kintai/UserRegisterServlet?action=null" title="確認画面へ進む">確認画面へ</a> -->
 <input class="register_button"  type="submit" title="確認画面へ進む" value="確認画面へ" />
 
-	</form>
+<!-- <button onclick="pushed_Attendance()" name="この内容でユーザー登録する" type="submit"
+class="js-modal-open register_button"  data-target="register_modal01">この内容でユーザー登録する</button> -->
+
+
+</form>
 
 <!-- テスト：送信した後モーダルウィンドウを開く感じで -->
 <!-- 新規登録確認ボタン -->
 
 <!-- hiddenでインプット、クッキーに保存が必要かも -->
 <!-- 参考URL https://teratail.com/questions/53352　-->
-
-
 
 
 <!-- <input class="contact-submit"  type="submit" value="新規登録" /> -->
@@ -157,6 +160,7 @@ placeholder="アズール プラス(苗字との間に半角スペースを入�
 birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInStart=1000&breakOutEnd=1000&fixComment=000&fixValue= -->
 
 <!-- モーダル用データテーブルクラス読み込み -->
+<form>
 <table class="contact-table">
 
 <tr>
@@ -165,8 +169,8 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 </th>
 
 <td class="contact-body">
-<input class="form-text" type="text" name="empID" list="data" autocomplete="off"
-pattern="^[0-9a-zA-Z]{6-10}$" size="52"
+<input class="form-text" type="text" name="emp_Id" list="data"
+pattern="^[0-9a-zA-Z]{6,10}$" size="52" autocomplete="off" title="emp001(半角英数6～10文字で入力)"
 maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 
 </td>
@@ -180,8 +184,8 @@ maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
 </th>
 
 <td class="contact-body">
-<input class="form-text" type="password" name="pass" size="52"
-pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" required>
+<input class="form-text" type="password" name="pass" size="52" title="半角英数6～20文字で入力"
+pattern="^[0-9a-zA-Z]{6,20}$" placeholder="半角英数6～20文字で入力" required>
 
 </td>
 
@@ -194,7 +198,8 @@ pattern="^[0-9a-zA-Z]{6-20}$" placeholder="半角英数6～20文字で入力" re
 
 <td class="contact-body">
 <input class="form-text" type="text" name="userName" size="52" autocomplete="off"
-placeholder="堀江 貴文(苗字との間に半角スペースを入れてください)" required>
+pattern="^[^0-9]{2,20}$" title="アズール プラス:2文字以上:数字以外(苗字との間に半角スペースを入れてください)"
+placeholder="アズール プラス:2文字以上:数字以外(苗字との間に半角スペースを入れてください)" required>
 
 </td>
 
@@ -204,10 +209,12 @@ placeholder="堀江 貴文(苗字との間に半角スペースを入れてく�
 </table>
 
 <!-- 		submit属性でデータ送信ボタン作ってみる -->
-<button onclick="pushed_Attendance()" name="この内容でユーザー登録する" type="submit"
-class="js-modal-open register_button"  data-target="register_modal02">この内容でユーザー登録する</button>
+<!-- <input onclick="pushed_Attendance()" name="この内容でユーザー登録する" type="submit"
+class="js-modal-open register_button"  data-target="register_modal02"> -->
+<input onclick="pushed_Attendance()" name="この内容でユーザー登録する" type="submit"
+class=" register_button"  data-target="register_modal02">
 
-
+</form>
 
 <!-- 送信完了しましたボタンの非表示モーダル -->
 <div class="text_center">
@@ -258,8 +265,8 @@ class="js-modal-open register_button"  data-target="register_modal02">この内�
 <!-- レスポンシブテーブルjsを読み込み -->
 <script type="text/javascript" src="js/responsiveTables.js"></script>
 
-<!-- <!-- グローバル変数jsを読み込み -->
-<!-- <script type="text/javascript" src="js/globalConst.js"></script> -->
+<!-- 自作のグローバル変数jsを読み込み -->
+<script type="text/javascript" src="js/globalConst.js"> </script>
 
 </body>
 

@@ -124,8 +124,8 @@ div.buttons {
 } */
 
 
-/*こちらは単品用のモーダル*/
-.solomodal {
+/*こちらは単品用のモーダル。だがこっちも組み合わせたほうがモーダルとして完成度高いかも。*/
+.modal {
   display: none;/*ここが原因の可能性*/
   position: fixed;
   z-index: 1;

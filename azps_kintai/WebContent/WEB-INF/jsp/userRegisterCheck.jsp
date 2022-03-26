@@ -137,12 +137,14 @@ if (errorMsg == null || errorMsg.length() == 0) {
 	<h3>この内容でユーザー登録してよろしいですか？</h3>
 	<br><br>
 
+
+	<!-- いいえの場合 -->
+ 	<a class="register_button"  href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ戻る">いいえ</a>
+
 	<!-- はいの場合、モーダルポップアップで入力完了処理、しようかと思ったがaction=done飛ばす必要があるため断念。結果ページへ進む -->
 <!--     <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="userRegisterChecke_modal01">はい</button> -->
  	<a class="register_button margin_80px_right"  href="/azps_kintai/UserRegisterServlet?action=done" title="新規ユーザー登録する">はい</a>
 
-	<!-- いいえの場合 -->
- 	<a class="register_button"  href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ戻る">いいえ</a>
 
 	</div>
 <!-- UserRegisterServletへ飛ばすテスト送信フォーム -->

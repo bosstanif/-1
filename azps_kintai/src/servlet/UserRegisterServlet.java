@@ -33,9 +33,9 @@ public class UserRegisterServlet extends HttpServlet {
 	//リクエストパラメータから取得
 
 
-	//もしパラメータに"done"が代入されていたら
+	//もしパラメータに"done"が代入されてGETリクエストされてきていたら
+	//ユーザー登録確認画面から「この情報で登録する」を押したものとみなす。
 	if("done".equals(action)) {
-		//こちらの画面でDAOメソッドに難あり
 		// ユーザー登録確認画面から「登録実行」をリクエストされたときの処理
 		// セッションスコープに保存された登録アカウントを取得
 		HttpSession session = request.getSession();
@@ -89,46 +89,55 @@ public class UserRegisterServlet extends HttpServlet {
 
 
 	//POSTメソッド
-	//ユーザー情報入力フォームタグからPOSTで送られてきた情報を処理する
+	//新規ユーザー登録の情報入力フォームタグからinputのPOSTで送られてきた情報を処理する
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//リクエスト情報をUTF-8で読むと宣言
+		//送られてきたリクエスト情報をUTF-8形式でで読むと宣言
 		request.setCharacterEncoding("UTF-8");
 
-		// リクエストパラメータの取得
-		//オートインクリメントのnum系は基本的に入れない。
+		// 送られてきたリクエストパラメータの取得
 		String emp_Id = request.getParameter("emp_Id");
-		String name = request.getParameter("pass");
-		String pass = request.getParameter("userName");
-
-		//アカウントビーンズをnewAccount変数に代入してインスタンス化
-		AccountBeans newAccount =new AccountBeans();
-		newAccount.setEmp_Id(emp_Id);
-		newAccount.setName(name);
-		newAccount.setPass(pass);
+		String name = request.getParameter("userName");
+		String pass = request.getParameter("pass");
 
 		//2重チェック（HTML側書き換え対策）
 		String errorMsg = "";
-		//もし入力内容が書き換えられていたりタグにリクワイヤードつけ忘れていた場合は、変数エラーメッセージに以下の文章を代入する
+		//もし入力内容が書き換えられていたりタグにリクワイヤードつけ忘れていた場合用に、変数エラーメッセージに以下の文章を代入する
 		if (emp_Id == null || name == null || pass == null) {
-			errorMsg = "入力項目にエラーがあります。社員IDまたは名前またはパスワードの値が見つかりません。";
+			errorMsg = "入力項目にエラーがあります。社員ID、名前、パスワードのいずれかの値が見つかりません。";
 		}
 		// エラーメッセージをリクエストスコープに保存
 		request.setAttribute("errorMsg", errorMsg);
 
-		// セッションスコープに登録ユーザーを保存
+		//登録するユーザーの情報を設定するために、
+		//アカウントビーンズをnewAccount変数に代入してインスタンス化
+
+		//引数有りコンストラクタ実験用：どちらでもいけるし不具合はなし。
+		//AccountBeans newAccount =new AccountBeans(emp_Id, name, pass);
+		AccountBeans newAccount =new AccountBeans();
+		//ビーンズ内のコンストラクタと同じ情報を持った実体化変数にset。
+		//これによりnewAccount変数内にemp_Idなどの情報も格納される。
+		//ここでsetさせた必要性はまだ不明だけど以下コメントのAccountDAOのテストかもなのでとりあえず残す。
+		//いやでもこれがないと確認画面でgetParameterできぬ。ってああ、引数なしコンストラクタで実体化してるからだわ。。
+		//なんで、accountDAO側に手を加える。
+		newAccount.setEmp_Id(emp_Id);
+		newAccount.setName(name);
+		newAccount.setPass(pass);
+
+		// セッションスコープに登録ユーザーインスタンスを保存
 		HttpSession session = request.getSession();
-		//セッションスコープのsetAttributeの引数にはString型registerAccountと、↑で作成したアカウントビーンズインスタンスを入れる。
+		//セッションスコープのsetAttributeの引数にはkeyとなるString型registerAccountと、↑で作成したnewAccountインスタンス変数を入れる。
 		session.setAttribute("registerAccount", newAccount);
 
+		//多分サーブレットからDAOテスト用
 		/*
 		 * AccountDAO Adao = new AccountDAO(); Adao.Insert(newAccount);
 		 */
+
 		//フォワード
-		//完了した処理結果をスコープに保存している状態でレジスターチェックJSPに返す。
+		//完了した処理結果をスコープに保存している状態でレジスターチェックJSPに飛ぶ。
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userRegisterCheck.jsp");
 		dispatcher.forward(request, response);
 
 	}
-
 }

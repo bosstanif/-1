@@ -12,6 +12,6 @@ public class LoginLogic {
 		//25～32行目にて完全一致か判定
 		AccountBeans account = dao.Select_All(login);
 		//呼び出したLoginServlet45行目に返す
-		return account;
+		return account;//判定処理完了した結果を呼び出し先に変数account内に入れて戻す
 	}
 }

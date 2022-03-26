@@ -19,7 +19,7 @@ public class AccountBeans implements Serializable {
 	private String outTime;
 	private String breakIn;
 	private String breakOut;
-	private String fixDate;
+	private String fixDate;//打刻修正した時間。間に合えば使用
 
 
 	@Override
@@ -31,9 +31,10 @@ public class AccountBeans implements Serializable {
 	}
 
 	public AccountBeans() {
-
 	}
 
+
+	////////////引数有りコンストラクタ
     //AccountDAO繧�繧雁叙繧顔畑
 	public AccountBeans(int account_Num, int master_Flag, String emp_Id, String name, String pass, int status,
 			String comment) {
@@ -46,9 +47,18 @@ public class AccountBeans implements Serializable {
 		this.status = status;
 		this.comment = comment;
 	}
-	
+
+	//ユーザー新規登録POSTリクエスト時の仮newAccountインスタンス生成用
+	//実験してみたもののこれはリロード時の問題とは関係ない
+//	public AccountBeans(String emp_Id, String name, String pass) {
+//		this.emp_Id = emp_Id;
+//		this.name = name;
+//		this.pass = pass;
+//	}
+
+
     public AccountBeans(String dayTime, String inTime, String outTime, String breakIn, String breakOut) {
-		
+
 		this.dayTime = dayTime;
 		this.inTime = inTime;
 		this.outTime = outTime;
@@ -58,8 +68,6 @@ public class AccountBeans implements Serializable {
 
 	//CountDayDAO繧�繧雁叙繧顔畑
 	public AccountBeans( int dayNum, String dayTime, String inTime, String outTime, String breakIn, String breakOut) {
-
-
 		this.dayNum = dayNum;
 		this.dayTime = dayTime;
 		this.inTime = inTime;
@@ -68,6 +76,8 @@ public class AccountBeans implements Serializable {
 		this.breakOut = breakOut;
 	}
 
+
+	///////////////////
 	public int getAccount_Num() {
 		return account_Num;
 	}
@@ -172,7 +182,7 @@ public class AccountBeans implements Serializable {
 	public void setBreakOut(String breakOut) {
 		this.breakOut = breakOut;
 	}
-	
+
 	public void setFixDate(String fixDate) {
 		this.fixDate = fixDate;
 	}

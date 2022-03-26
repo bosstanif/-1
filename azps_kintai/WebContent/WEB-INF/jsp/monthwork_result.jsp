@@ -5,7 +5,7 @@
 <!--jspテンプレ-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--各種modelの読み込み欄 複数指定時,カンマ忘れないように。-->
-
+<%-- <%@page import="model.AccountBeans"%> --%>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -43,8 +43,8 @@
 
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
-<h1>例)名無しさんの勤怠記録表：月毎集計</h1>
-
+<!-- モデル読み込んでいるのでちゃんと読み込めるよ -->
+<%-- <h1><%=loginAccount.getName() %>さんの勤怠記録表：月毎集計</h1> --%>
 
 <!-- ここからレスポンシブテーブル処理 -->
 
