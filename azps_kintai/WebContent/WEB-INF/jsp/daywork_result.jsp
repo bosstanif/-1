@@ -65,10 +65,15 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 <!-- 登録フォーム.cssの読み込み-->
 <link rel="stylesheet" href="css/form.css">
 
+<!-- 続きを表示.cssの読み込み-->
+<link rel="stylesheet" href="css/nextview.css">
+
 <!-- タイムピッカー.cssの読み込み-->
 <!-- CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.20/jquery.datetimepicker.css">
 <!-- <link rel="stylesheet" href="datetimepicker-master/build/jquery.datetimepicker.css"> -->
+
+
 
 </head>
 
@@ -80,7 +85,6 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 
 <!-- 呼び出し元を静的インクルで読み込んでやればヘッダーでセッションを、モデルをここで読み込んでいるのでちゃんと読み込める -->
 <h1><%=loginAccount.getName() %> さんの勤怠記録表：日間集計</h1>
-
 
 <!-- ここからレスポンシブテーブル処理 -->
 
@@ -186,10 +190,466 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
                 <button class="comment_button action">修正依頼の返信が入ります</button>
             </td> -->
         </tr>
+    </tbody>
+</table>
+
+<!-- ここにもっと見るボタン -->
+<div class="grad-wrap">
+    <input id="trigger1" class="grad-trigger" type="checkbox">
+    <label class="grad-btn" for="trigger1"><span>...</span></label>
+    <div class="grad-item">
+    <!-- ここに隠したい文章を書く(cssのグラデーションで隠す高さ以降が非表示) -->
+
+<table onload="pushed_Attendance()" class="dataTable">
+    <thead>
+        <tr>
+            <td>例)03/06(日)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+        <tr>
+            <td>例)03/07(月)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/08(火)</td>
+            <td>例)9:03</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+
+<!--             <td>
+                <button class="comment_button action">例)修正依頼却下</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/09(水)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)修正依頼承認</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/10(木)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action"></button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/11(金)</td>
+            <td>例)9:00</td>
+            <td>例)19:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)1h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)ここには管理者から</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/12(土)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/13(日)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+        <tr>
+            <td>例)03/14(月)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/15(火)</td>
+            <td>例)9:03</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+
+<!--             <td>
+                <button class="comment_button action">例)修正依頼却下</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/16(水)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)修正依頼承認</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/17(木)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action"></button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/18(金)</td>
+            <td>例)9:00</td>
+            <td>例)19:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)1h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)ここには管理者から</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/19(土)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/20(日)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+        <tr>
+            <td>例)03/21(月)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/22(火)</td>
+            <td>例)9:03</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+
+<!--             <td>
+                <button class="comment_button action">例)修正依頼却下</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/23(水)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)修正依頼承認</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/24(木)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action"></button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/25(金)</td>
+            <td>例)9:00</td>
+            <td>例)19:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)1h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)ここには管理者から</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/26(土)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/27(日)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+        <tr>
+            <td>例)03/28(月)</td>
+            <td>例)9:00</td>
+            <td>例)17:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)7h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">修正依頼の返信が入ります</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/29(火)</td>
+            <td>例)9:03</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+
+<!--             <td>
+                <button class="comment_button action">例)修正依頼却下</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/30(水)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action">例)修正依頼承認</button>
+            </td> -->
+        </tr>
+
+
+        <tr>
+            <td>例)03/31(木)</td>
+            <td>例)9:00</td>
+            <td>例)18:00</td>
+            <td>例)12:00</td>
+            <td>例)13:00</td>
+            <td>例)8h</td>
+            <td>例)0h</td>
+            <td>
+                <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">打刻修正</button>
+            </td>
+<!--             <td>
+                <button class="comment_button action"></button>
+            </td> -->
+        </tr>
 
 
     </tbody>
 </table>
+
+    </div>
+</div>
+<!-- もっと見るボタンここまで -->
 
 
 
