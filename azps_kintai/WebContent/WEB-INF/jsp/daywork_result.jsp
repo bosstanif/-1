@@ -79,7 +79,7 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 <!-- ここの下から実際にページ内容を書き始める。 -->
 
 <!-- 呼び出し元を静的インクルで読み込んでやればヘッダーでセッションを、モデルをここで読み込んでいるのでちゃんと読み込める -->
-<h1><%=loginAccount.getName() %> さんの勤怠記録表：日毎集計</h1>
+<h1><%=loginAccount.getName() %> さんの勤怠記録表：日間集計</h1>
 
 
 <!-- ここからレスポンシブテーブル処理 -->

@@ -1,4 +1,4 @@
-<!-- 最終更新日時0325 -->
+<!-- 最終更新日時0328 -->
 <!-- 作成者井川-->
 
 <!--jspテンプレ-->
@@ -30,6 +30,9 @@
 <!-- timcard.cssの読み込み -->
 <link rel="stylesheet" href="css/timecard.css">
 
+<!-- accordionMenu.cssの読み込み -->
+<link rel="stylesheet" href="css/accordionMenu.css">
+
 </head>
 
 <body class="text_center" >
@@ -57,6 +60,14 @@
 <%@ include file="/WEB-INF/jsp/attendance.jsp" %>
 
 
+<main class="contents">
+
+<!-- acc single -->
+<div class="accordion-single js-acc-single">
+   <div class="accordion-single-item js-acc-item">
+      <h2 class="accordion-single-title js-acc-single-trigger">日間集計表示</h2>
+      <div class="accordion-single-content">
+
 <!-- 日間勤怠集計読み込み部分 -->
 <!-- 動的または静的インクルードの選択
 	 動的：サーブレット読み込み可、モデル読み込み不可。ｲﾝｸﾙ先の<実行結果>を取り込む
@@ -64,7 +75,14 @@
 <%-- <jsp:include page="/WEB-INF/jsp/daywork_result.jsp" /> --%>
 <%@ include file="/WEB-INF/jsp/daywork_result.jsp" %>
 
+      </div>
+    </div>
 
+
+
+   <div class="accordion-single-item js-acc-item">
+      <h2 class="accordion-single-title js-acc-single-trigger">月間集計表示</h2>
+      <div class="accordion-single-content">
 <!-- 月間勤怠集計読み込み部分 -->
 <!-- 動的または静的インクルードの選択
 	 動的：サーブレット読み込み可、モデル読み込み不可。ｲﾝｸﾙ先の<実行結果>を取り込む
@@ -72,7 +90,10 @@
 <%-- <jsp:include page="/WEB-INF/jsp/monthwork_result.jsp" /> --%>
  <%@ include file="/WEB-INF/jsp/monthwork_result.jsp" %>
 
-
+      </div>
+    </div>
+</div><!-- accordion-single -->
+</main>
 
 <!-- フッターラッパー-の閉じdiv -->
 </div>
@@ -92,6 +113,7 @@
 <!-- タイムカード押下後ダイアログ処理用jsを読み込み -->
  <script type="text/javascript" src="js/modalWindow.js"></script>
 
+<script type="text/javascript" src="js/accordionMenu.js"></script>
 
 </body>
 

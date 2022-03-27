@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic Pro N', Meiryo, sans-serif;
+}
+
+.contents{
+  max-width: 100%;/*メニュー幅*/
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.accordion-single  {
+  border-bottom: 1px solid #efefef;
+  margin-top: 10px;
+}
+
+.accordion-single-title {
+  border-top: 1px solid #efefef;
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
+  font-size: 20px;
+  margin: 0;
+  background-color:windowframe;/*クリック部分の色*/
+}
+
+.accordion-single-title::after{
+  content: "";
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-top-color: #666;
+  transition: transform .2s ease;
+}
+
+.accordion-single-content {
+  max-height: 0;/*閉じている時のコンテンツ内要素の高さ*/
+  overflow: hidden;
+  transition: max-height .3s ease-in-out;
+}
+
+.accordion-single-content p {
+  padding: 20px;
+}
+
+.accordion-single-item.is-open .accordion-single-content  {
+/*   max-height: 150px; */
+  max-height: 100%;
+  /*コンテンツを開いた時の最大高さ*/
+}
+
+.accordion-single-item.is-open .accordion-single-title::after  {
+  transform: rotate(180deg);
+}

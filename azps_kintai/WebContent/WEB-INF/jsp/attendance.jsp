@@ -1,4 +1,4 @@
-<!-- 最終更新日時0322 -->
+<!-- 最終更新日時0328 -->
 <!-- 作成者井川-->
 <!-- 勤怠記録画面(月間集計) -->
 
@@ -53,40 +53,79 @@
 
 </div>
 
+
+<!--   <form action="" method="get" name="form1">
+    <div>
+      <label for="intimeValue">名前(5文字以上): </label>
+      <input type="text" name="intimeValue" id="intimeValue" required>
+    </div>
+    <div>
+      <input type="submit" value="送信" id="button1">
+    </div>
+  </form> -->
+
+<!--   <script type="text/javascript">
+    const intimeValue = document.getElementById('intimeValue');
+    const button1 = document.getElementById('button1');
+
+    button1.addEventListener('click', (e) => {
+      // デフォルトのイベントをキャンセル
+      e.preventDefault();
+
+      if(intimeValue.value.length < 5) {
+        alert('--エラーが発生しました。--\n管理者に報告してください');
+      } else {
+          alert('--出勤しました--\nおはようございます。今日も一日頑張りましょう！');
+    	  document.form1.submit();
+      }
+    });
+  </script> -->
+
 <!-- ここにmodalのアンカータグやボタンを置く -->
     <div onload="pushed_Attendance()" class="content buttons">
 	<ul>
 		<li>
-<form action="/azps_kintai/MainServlet" method="post">
-<!-- 送信テスト用のフォームタグ -->
-<!--   <form action="main.jsp" method="get"> -->
+
+		<!-- f出勤orm情報をMainServletへpost送信 -->
+		<!-- <form action="/azps_kintai/MainServlet" method="post"> -->
+		<!-- 送信テスト用のフォームタグ -->
+		   <form action="main.jsp" method="get">
 
 
-<!-- 				↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
-			<input id="attendanceIntimeValueInput" type="hidden" name="intimeValue" value="">
-		<!-- クリックでモーダル1を表示 -->
-        <button onclick="pushed_Attendance()"  type="submit" data-target="modal01">出勤</button><br>
-<!--         <button onclick="pushed_Attendance()" class="js-modal-open" type="submit" data-target="modal01">出勤</button><br> -->
-</form>
+			<!--↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作未検証 -->
+			<!-- <input id="attendanceIntimeValueInput" type="hidden" name="intimeValue" value=""> -->
+<!--  				<p id="intimeDate1">Now Loading...</p> -->
+<!-- 				<p id="intimeDate2">Now Loading...</p> -->
+			<!-- クリックでモーダル1を表示 -->
+			<!-- <button onclick="pushed_Attendance()" id="intimeDate1" type="submit" data-target="modal01">出勤</button><br> -->
+			<button onclick="pushed_Attendance()" type="submit" data-target="modal01">出勤</button><br>
+			<!-- <button onclick="pushed_Attendance()" class="js-modal-open" type="submit" data-target="modal01">出勤</button><br> -->
+
+		</form>
 		</li>
 
-		<li>
-<!--   <form action="/azps_kintai/MainServlet" method="post"> -->
-<!-- 送信テスト用のフォームタグ -->
-<form action="main.jsp" method="get">
 
-<!-- 			<p id="RealtimeClockArea4">test Loading...</p> -->
-<!--	↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作検証済み -->
-			<input id="attendanceOuttimeValueInput" type="hidden" name="outtimeValue" value="">
+		<li>
+
+		<!-- 退勤form情報をMainServletへpost送信 -->
+		<!-- <form action="/azps_kintai/MainServlet" method="post"> -->
+		<!-- 送信テスト用のフォームタグ -->
+		<form action="main.jsp" method="get">
+		<!-- http://localhost:8080/azps_kintai/main.jsp?outtimeValue= -->
+
+		<!-- <p id="RealtimeClockArea4">test Loading...</p> -->
+		<!--↓現在日時をvalueに入れてhidden属性でServlet側へ送る。動作検証済み -->
+<!-- 			<input onclick="pushed_Attendance()" id="attendanceOuttimeValueInput" type="hidden" name="outtimeValue" value=""> -->
 		<!-- クリックでモーダル2を表示 -->
-  		<button onclick="pushed_Attendance()"  type="submit"
-        data-target="modal02">退勤test</button><br>
+		<!-- <input onclick="pushed_Attendance()" id="attendanceOuttimeValueInput" type="submit" name="outtimeValue" value="outtimetest"> -->
+  		<button   type="submit"
+        data-target="modal02">退勤</button><br>
 
 <!--         <button onsubmit="pushed_Attendance()" class="js-modal-submit-open" type="submit"
         data-target="modal02" value="test">退勤</button><br> -->
 		</form>
 		</li>
-
+	<!-- http://localhost:8080/azps_kintai/main.jsp?outtimeValue=outtimetest -->
     </ul>
     </div>
 
@@ -141,8 +180,8 @@
 
 		        <h1 >出勤しました</h1>
 				<p>おはようございます。今日も一日頑張りましょう！</p>
- 				<p id="intimeDate1">Now Loading...</p>
-				<p id="intimeDate2">Now Loading...</p>
+<!--  				<p id="intimeDate1">Now Loading...</p> -->
+<!-- 				<p id="intimeDate2">Now Loading...</p> -->
 
             <button class="js-modal-close" >閉じる</button>
         </div><!--modal__inner-->
