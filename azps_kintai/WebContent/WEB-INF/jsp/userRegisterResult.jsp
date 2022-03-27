@@ -67,7 +67,7 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 	</h4>
 	<br>
 	<br>
-<!-- 	ログインサーブレット経由でログイン画面へ飛ぶ -->
+<!-- 	ログインサーブレットdoGetメソッド経由でログイン画面へ飛ぶ -->
 	<a class="register_button" href="/azps_kintai/LoginServlet" title="ユーザーログインへ" >ログイン画面へ</a>
 </div>
 

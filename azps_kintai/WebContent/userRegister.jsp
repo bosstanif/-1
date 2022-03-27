@@ -86,8 +86,8 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 
 <td class="contact-body">
 <input class="form-text" type="text" name="emp_Id" list="data"
-pattern="^[0-9a-zA-Z]{6,10}$" size="52" autocomplete="off" title="emp001(半角英数6～10文字で入力)"
-maxlength="10" placeholder="emp001(半角英数6～10文字で入力)" required>
+pattern="^[0-9a-zA-Z]{1,10}$" size="52" autocomplete="off" title="emp001(半角英数1～10文字で入力)"
+maxlength="10" placeholder="emp001(半角英数1～10文字で入力)" required>
 
 </td>
 

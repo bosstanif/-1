@@ -203,9 +203,9 @@ AccountBeans loginAccount = (AccountBeans) session.getAttribute("loginAccount");
 <!-- 1つ目のモーダル内には打刻修正の画面が入ります -->
 
 <!-- 修正時間をFixServletに送るためのform -->
-<!-- <form action="/azps_kintai/MainServlet" method="post"> -->
-<!-- テスト用form -->
-  <form action="main.jsp" method="get">
+ <form action="/azps_kintai/MainServlet" method="post">
+<!-- テスト用form。getで飛ばしている -->
+<!--   <form action="main.jsp" method="get"> -->
 <!-- テスト結果は以下の通りなので、きちんとform情報が送れている -->
 <!-- http://localhost:8080/azps_kintai/main.jsp?
 birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInStart=1000&breakOutEnd=1000&fixComment=000&fixValue= -->
@@ -309,14 +309,14 @@ birthday=2022-03-23&inTimeStart=1000&outTimeEnd=1000&overTimeHours=00&breakInSta
 
 		</table>
 
-<!-- 修正申請ボタン -->
+	<!-- 修正申請ボタン -->
 
-<!--hidden属性でinput情報を name="fixValue"でサーブレット側に渡す -->
-<input type="hidden" name="fixValue" value="" ><br><br>
-<!-- モーダル関連を読み込むとsubmit属性(リクワイアードチェック)が機能しないので外しておく。 -->
-<input class="register_button " type="submit" value="打刻修正を行う" ><br><br>
-<!-- サブミット後自動実行してモーダルウィンドウ開いてほしい(願望) -->
-<!-- <p onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">あああ</p> -->
+	<!--hidden属性でinput情報を name="fixValue"でサーブレット側に渡す -->
+	<input type="hidden" name="fixValue" value="" ><br><br>
+	<!-- モーダル関連を読み込むとsubmit属性(リクワイアードチェック)が機能しないので外しておく。 -->
+	<input class="register_button " type="submit" value="打刻修正を行う" ><br><br>
+	<!-- サブミット後自動実行してモーダルウィンドウ開いてほしい(願望) -->
+	<!-- <p onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="daywork_modal01">あああ</p> -->
 
 	</form>
 
@@ -406,7 +406,7 @@ $('.time_timepicker').datetimepicker({
 
 /*残業時間用表示その2*/
 $('.hour_timepicker').datetimepicker({
-	step:5,                   /*残業時間は5分刻みで取得*/
+	step:1,                   /*残業時間は5分刻みで取得*/
 	datepicker:false ,       /*日付機能をオフ*/
 	format:'H:i',            /*出力フォーマットを時間：分のみに変更*/
 //	format:'H',            /*出力フォーマットを時間のみに変更*/

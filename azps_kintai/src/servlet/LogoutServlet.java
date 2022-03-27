@@ -4,7 +4,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//Getメソッド
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -26,16 +26,25 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		//invalidateメソッドを使い、セッションスコープを破棄する。
 		session.invalidate();
+		System.out.println("ログアウト処理1：セッションスコープ破棄完了。");
+
+
 		//アプリケーションスコープに保存された情報を applicationに代入
 		ServletContext application = this.getServletContext();
 		//removeAttributeメソッドを使い、引数に変数"login"を指定しアプリケーションスコープから破棄する。
 		application.removeAttribute("login");
+		System.out.println("ログアウト処理1：アプリケーションスコープ破棄完了。");
+
 
 		//繝ｭ繧ｰ繧､繝ｳ迥ｶ諷九′縺ｪ縺九▲縺溘→縺阪�ｯlogin.jsp縺九ｉ縺ｮ繧｢繧ｯ繧ｻ繧ｹ
 
+//		request.setAttribute("msg", "ログアウトしました");
 		//フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");/* */
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");/* */
+//		dispatcher.forward(request, response);
+
+		//センドリダイレクト　ここでセンドリダイレクト使うことでurlを明示的に変更。
+		response.sendRedirect("/azps_kintai/login.jsp");
 
 	}
 

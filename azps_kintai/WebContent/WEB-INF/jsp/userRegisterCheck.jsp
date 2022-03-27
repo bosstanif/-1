@@ -60,7 +60,7 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 
 <!-- if判定でエラーメッセージがあればそれを表示。 -->
 
-<!-- このif文が正常に機能していない -->
+<!-- このif文はWEB-INF内にある同ファイルに対してしか正常に機能しない。 -->
 <%
 if (errorMsg.length() != 0) {
 %>
@@ -83,7 +83,11 @@ if (errorMsg.length() != 0) {
 if (errorMsg == null || errorMsg.length() == 0) {
 %>
 
+
 <!-- ここから下は登録情報の確認が促される画面。 -->
+
+<!-- フォーム全体の画面の固定 -->
+<div class="contact">
 
 <table class="contact-table">
 
@@ -126,7 +130,7 @@ if (errorMsg == null || errorMsg.length() == 0) {
 
 
 </table>
-
+</div>
 
 <!-- if文の終わり -->
 	<%
@@ -134,12 +138,13 @@ if (errorMsg == null || errorMsg.length() == 0) {
 	%>
 
 	<div class="text_center">
-	<h3>この内容でユーザー登録してよろしいですか？</h3>
+	<h3>この内容でユーザー登録します。よろしいですか？</h3>
 	<br><br>
 
 
 	<!-- いいえの場合 -->
  	<a class="register_button"  href="/azps_kintai/UserRegisterServlet" title="新規ユーザー登録へ戻る">いいえ</a>
+　
 
 	<!-- はいの場合、モーダルポップアップで入力完了処理、しようかと思ったがaction=done飛ばす必要があるため断念。結果ページへ進む -->
 <!--     <button onclick="pushed_Attendance()" class="js-modal-open register_button"  data-target="userRegisterChecke_modal01">はい</button> -->

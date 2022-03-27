@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,19 +19,37 @@ public class LoginServlet extends HttpServlet {
 
 
 	//getメソッド
+	//UserRegisterResult.jspから「ログイン画面へ戻る」を押された時と、
+	//header.jspから「ログイン画面」を押した時に起動
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {/*②*/
 		//リクエストパラメータの取得
 		/*ログインサーブレット宛にgetで送信されてきたら・・・*/
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-		dispatcher.forward(request, response); /* ③ */
+
+
+		//フォワード、またはセンドリダイレクトの選択。
+		//フォワード：サーブレットまたはjspファイルが指定可能、転送元アプリケーションにのみ飛べる。
+		//			  転送後URLはリクエスト時のまま、リクエストスコープ引き継ぎ可
+		//			  ログイン処理などの場合、doPostでフォワード後に同じ画面リロードするとdoGetが実行される。何もメソッド無いとブランクページ。ので注意。
+		//			  対策として、乱数キーも生成してセッション保管か、センドリダイレクト(ユーザーからURL指定可能になるデメリットはある)。PRGパターン。
+		//センドリダイレクト：サーブレット、HTML、jspファイルなどブラウザがリクエストできるものすべて(WEB-INF内などを除く)指定可能、
+		//					  すべてのアプリケーション、他サイトに転送可能。
+		//					  転送後URLはリダイレクト先に変わるのでWebContent内でよくて、リロード二重投稿などを防ぎたい場合に利用
+		//リクエストスコープ引き継ぎ不可、セッションとアプリケーションスコープは可
+
+		//フォワード
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+//		dispatcher.forward(request, response); /* ③ */
+
+		//センドリダイレクト　ここでセンドリダイレクト使うことでurlを明示的に変更。
+		response.sendRedirect("/azps_kintai/login.jsp");
 		}
 
 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 	//postメソッド
+	//「ログイン」実行時に起動
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		// UTF-8形式でリクエストパラメータの取得
@@ -42,6 +59,11 @@ public class LoginServlet extends HttpServlet {
 		//ログイン時なので社員番号とパスワードを取得し、
 		String emp_Id = request.getParameter("emp_Id");
 		String pass = request.getParameter("pass");
+
+		//エラーメッセージとフォワード先分岐用の変数を定義
+		//今回はまだ使用しない
+		String msg = "";
+		String forwardPath = "";
 
 		//ログイン確認処理の実行
 		//
@@ -82,9 +104,25 @@ public class LoginServlet extends HttpServlet {
 		//さらに、個々人ごとの勤務記録も本来はこのログイン認証OKのタイミングで行う。（あとで追加を行う）
 
 		//ここまでのif==true処理を終えた後の、POST時のフォワード先を指定する。ここではログイン処理後はメイン画面に遷移したいので、メイン画面を指定。
-		/*	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");*/
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
-		dispatcher.forward(request, response);
+
+		//フォワード、またはセンドリダイレクトの選択。
+		//フォワード：サーブレットまたはjspファイルが指定可能、転送元アプリケーションにのみ飛べる。
+		//			  転送後URLはリクエスト時のまま、リクエストスコープ引き継ぎ可
+		//			  ログイン処理などの場合、doPostでフォワード後に同じ画面リロードするとdoGetが実行される。何もメソッド無いとブランクページ。ので注意。
+		//			  対策として、乱数キーも生成してセッション保管か、センドリダイレクト(ユーザーからURL指定可能になるデメリットはある)。PRGパターン。
+		//センドリダイレクト：サーブレット、HTML、jspファイルなどブラウザがリクエストできるものすべて(WEB-INF内などを除く)指定可能、
+		//					  すべてのアプリケーション、他サイトに転送可能。
+		//					  転送後URLはリダイレクト先に変わるのでWebContent内でよくて、リロード二重投稿などを防ぎたい場合に利用
+		//リクエストスコープ引き継ぎ不可、セッションとアプリケーションスコープは可
+
+		//フォワード
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+//		dispatcher.forward(request, response);
+
+		//センドリダイレクト
+		response.sendRedirect("/azps_kintai/main.jsp");
+//		response.sendRedirect("./main.jsp");//この形だとおそらくうまくパスを読み取れないためEclipse再起動時404になることがある
+
 		} else {
 			//ログイン失敗時は遷移元のページへリダイレクト。ここでは、LogoutServletに飛ばし、セッションスコープの破棄と、login,jspへ戻る処理を同時に行う
 			//リダイレクトした場合、URL欄に表示されるurlはここで指定したリダイレクト先ではなく、この場合、LoginServletになる。

@@ -19,6 +19,8 @@ public class UserRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//Getメソッド
+	//header.jspから新規ユーザー登録ボタンを押した時と、
+	//userRegisterCheck.jspからこの情報で登録する→「はい」で起動
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {
 	//リクエスト情報をUTF-8で読むと宣言
@@ -34,7 +36,7 @@ public class UserRegisterServlet extends HttpServlet {
 
 
 	//もしパラメータに"done"が代入されてGETリクエストされてきていたら
-	//ユーザー登録確認画面から「この情報で登録する」を押したものとみなす。
+	//userRegisterCheck.jspで、この情報で登録する「はい」を押したものとみなす。
 	if("done".equals(action)) {
 		// ユーザー登録確認画面から「登録実行」をリクエストされたときの処理
 		// セッションスコープに保存された登録アカウントを取得
@@ -51,21 +53,21 @@ public class UserRegisterServlet extends HttpServlet {
 
 		//session.removeAttribute("registerAccont");
 
-		// 新規登録できた場合（IDが登録済みではなかった）
-		//if==true
-		if (registration) {
-		// 登録後のフォワード先を設定
-		forwardPath = "/WEB-INF/jsp/userRegisterResult.jsp";//np
+			// 新規登録できた場合（IDが登録済みではなかった）
+			//if==true
+			if (registration) {
+				// 登録後のフォワード先を設定
+				forwardPath = "/WEB-INF/jsp/userRegisterResult.jsp";//np
 
-		}
-		else {
-			// それ以外、つまり登録済みだった場合
-			// エラーメッセージをリクエストスコープに保存
-			request.setAttribute("errorMsg", "登録済みの社員番号です");
-			// フォワード
-			forwardPath = "/WEB-INF/jsp/userRegisterCheck.jsp";//△。単純遷移だとerror 63ぬるぽ構文ミスかも
+			}
+			else {
+				// それ以外、つまり登録済みだった場合
+				// エラーメッセージをリクエストスコープに保存
+				request.setAttribute("errorMsg", "登録済みの社員番号です");
+				// フォワード
+				forwardPath = "/WEB-INF/jsp/userRegisterCheck.jsp";//△。単純遷移だとerror 63ぬるぽ構文ミスかも
 
-		}
+			}
 
 		//ネスト2フォワード先へ遷移
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
@@ -74,7 +76,8 @@ public class UserRegisterServlet extends HttpServlet {
 	} else {
 		//actionに何も入ってなければユーザーレジスターjspに飛ぶ
 		/*もしactionに値が入っていなければ、フォワード先を以下のものに書き変える*/
-		  forwardPath = "/WEB-INF/jsp/userRegister.jsp";//np
+		forwardPath = "/WEB-INF/jsp/userRegister.jsp";//np
+
 
   }
 
@@ -83,6 +86,9 @@ public class UserRegisterServlet extends HttpServlet {
 	/*↑で取得したフォワードパスを変数dispatcherに代入する。*/
 	RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
 	dispatcher.forward(request, response);
+	//センドリダイレクト ここでセンドリダイレクト使うと、ユーザー新規登録がSQLに反映されない（連番だけ進む）。
+//	response.sendRedirect("/azps_kintai/userRegister.jsp");
+
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -134,10 +140,26 @@ public class UserRegisterServlet extends HttpServlet {
 		 * AccountDAO Adao = new AccountDAO(); Adao.Insert(newAccount);
 		 */
 
+		//フォワード、またはセンドリダイレクトの選択。
+		//フォワード：サーブレットまたはjspファイルが指定可能、転送元アプリケーションにのみ飛べる。
+		//			  転送後URLはリクエスト時のまま、リクエストスコープ引き継ぎ可
+		//			  ログイン処理などの場合、doPostでフォワード後に同じ画面リロードするとdoGetが実行される。何もメソッド無いとブランクページ。ので注意。
+		//			  対策として、乱数キーも生成してセッション保管か、センドリダイレクト(ユーザーからURL指定可能になるデメリットはある)。PRGパターン。
+		//センドリダイレクト：サーブレット、HTML、jspファイルなどブラウザがリクエストできるものすべて(WEB-INF内などを除く)指定可能、
+		//					  すべてのアプリケーション、他サイトに転送可能。
+		//					  転送後URLはリダイレクト先に変わるのでWebContent内でよくて、リロード二重投稿などを防ぎたい場合に利用
+		//リクエストスコープ引き継ぎ不可、セッションとアプリケーションスコープは可
+
 		//フォワード
 		//完了した処理結果をスコープに保存している状態でレジスターチェックJSPに飛ぶ。
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userRegisterCheck.jsp");
 		dispatcher.forward(request, response);
+
+		//センドリダイレクト
+//		response.sendRedirect("./userRegisterCheck.jsp");
+
+		//フォワード
+
 
 	}
 }
