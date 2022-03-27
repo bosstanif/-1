@@ -9,6 +9,9 @@
 Thumbs.db
 .DS_Store
 
+!/jstl-api-1.2.jar
+!/jstl-impl-1.2.jar
+
 # Compiled class file
 *.class
 
@@ -172,3 +175,11 @@ Servers/localhost の Tomcat v9.0 サーバー-config/tomcat-users.xml
 Servers/localhost の Tomcat v9.0 サーバー-config/web.xml
 azps_kintai/src/main/webapp/META-INF/MANIFEST.MF
 azps_kintai/src/main/webapp/WEB-INF/web.xml
+Servers/localhost の Tomcat9 (Java11)-config/catalina.policy
+Servers/localhost の Tomcat9 (Java11)-config/catalina.properties
+Servers/localhost の Tomcat9 (Java11)-config/context.xml
+Servers/localhost の Tomcat9 (Java11)-config/server.xml
+Servers/localhost の Tomcat9 (Java11)-config/tomcat-users.xml
+Servers/localhost の Tomcat9 (Java11)-config/web.xml
+azps_kintai/WebContent/memo
+azps_kintai/WebContent/memo.html

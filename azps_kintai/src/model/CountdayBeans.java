@@ -28,9 +28,7 @@ public class CountdayBeans implements Serializable {
 			this.monthAllTime += (Integer.parseInt(work.getInTime()) - Integer.parseInt(work.getOutTime()));//拘束時間�?出勤から�?勤まで
 			breakTimeOfMonth += (Integer.parseInt(work.getBreakIn()) - Integer.parseInt(work.getBreakOut()));
 		}
-
 		this.monthWorkTime = monthAllTime - breakTimeOfMonth;//実労働時�?
-
 
 	}
 
