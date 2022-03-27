@@ -18,11 +18,15 @@ import model.AccountBeans;
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
+	//postメソッド
+	//main.jspからattendance.jsp経由で打刻修正送信ボタンで起動。
+	//fixValue
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		AccountBeans loginAccount = (AccountBeans) session.getAttribute("logiAccount");
-		// UTF-8�`���Ń��N�G�X�g�p�����[�^�̎擾
+		// UTF-8形式でリクエスパラメータを読み込む
 		request.setCharacterEncoding("UTF-8");
 
 		String inTime = request.getParameter("inTimeValue");
@@ -34,19 +38,24 @@ public class MainServlet extends HttpServlet {
 		AccountDAO Adao = new AccountDAO();
 		CountDayDAO Cdao = new CountDayDAO();
 
-		if (inTime != null && outTime == null && breakIn == null && breakOut == null) {
+		if(inTime != null && outTime == null && breakIn == null && breakOut == null)
+		{//出勤時間に値が入っていて、かつ退勤時間と休憩時間と休憩終わりは値がnullの時実行。
 			Adao.Insert(loginAccount);
 			Adao.Update_Status1(loginAccount);
 
 			loginAccount = new AccountBeans(dayTime, inTime, outTime, breakIn, breakOut);
 
-		} else if (inTime != null && outTime == null && breakIn != null && breakOut == null) {// 休憩入り
+		} else if (inTime != null && outTime == null && breakIn != null && breakOut == null)
+		{//出勤に値が入っていて、かつ退勤はnull、かつ、休憩に値が入っていて、かつ休憩終わりはnullだった時
+		// 休憩入り
 			Adao.Update_Status3(loginAccount);
 
-		} else if (inTime != null && outTime == null && breakIn != null && breakOut != null) {
+		} else if (inTime != null && outTime == null && breakIn != null && breakOut != null)
+		{
 			Adao.Update_Status1(loginAccount);
 
-		} else {// 退勤
+		} else
+		{// 退勤
 			Adao.Update_Status0(loginAccount);
 
 		}
@@ -56,7 +65,8 @@ public class MainServlet extends HttpServlet {
 		session.removeAttribute("loginAccount");
 		session.setAttribute("loginAccount", loginAccount);
 
-		String action = request.getParameter("打刻修正を行う");
+//		String action = request.getParameter("打刻修正を行う");
+		String action = request.getParameter("fixValue");
 
 		if (action != null) {
 
